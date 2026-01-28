@@ -1,0 +1,767 @@
+{
+  "current_holding": {
+    "code": "512480",
+    "name": "半导体",
+    "quantity": 16676,
+    "entry_price": 1.741,
+    "entry_date": "2026-01-27",
+    "entry_time": "14:51"
+  },
+  "trade_history": [
+    {
+      "date": "2026-01-15",
+      "time": "14:51",
+      "action": "买入",
+      "code": "159915",
+      "name": "创业板ETF",
+      "price": 3.352,
+      "quantity": 31900,
+      "reason": "初始持仓"
+    },
+    {
+      "date": "2026-01-20",
+      "time": "14:50",
+      "action": "卖出",
+      "code": "159915",
+      "name": "创业板ETF",
+      "price": 3.352,
+      "quantity": 31900,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-20",
+      "time": "14:51",
+      "action": "买入",
+      "code": "518880",
+      "name": "黄金ETF",
+      "price": 10.082,
+      "quantity": 10605,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-21",
+      "time": "14:50",
+      "action": "卖出",
+      "code": "518880",
+      "name": "黄金ETF",
+      "price": 10.344,
+      "quantity": 10605,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-21",
+      "time": "14:51",
+      "action": "买入",
+      "code": "159915",
+      "name": "创业板ETF",
+      "price": 3.305,
+      "quantity": 33191,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-21",
+      "time": "14:50",
+      "action": "卖出",
+      "code": "159915",
+      "name": "创业板ETF",
+      "price": 3.297,
+      "quantity": 33191,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-21",
+      "time": "14:51",
+      "action": "买入",
+      "code": "518880",
+      "name": "黄金ETF",
+      "price": 10.442,
+      "quantity": 10479,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-27",
+      "time": "14:50",
+      "action": "卖出",
+      "code": "518880",
+      "name": "黄金ETF",
+      "price": 10.883,
+      "quantity": 10479,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-27",
+      "time": "14:51",
+      "action": "买入",
+      "code": "512710",
+      "name": "军工龙头",
+      "price": 0.872,
+      "quantity": 65391,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-27",
+      "time": "14:50",
+      "action": "卖出",
+      "code": "512710",
+      "name": "军工龙头",
+      "price": 0.888,
+      "quantity": 65391,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-27",
+      "time": "14:51",
+      "action": "买入",
+      "code": "512480",
+      "name": "半导体",
+      "price": 1.741,
+      "quantity": 16676,
+      "reason": "轮动调仓"
+    }
+  ],
+  "daily_log": [
+    {
+      "date": "2026-01-15",
+      "time": "14:51:00",
+      "code": "159915",
+      "name": "创业板ETF",
+      "quantity": 31900,
+      "price": 9.867,
+      "market_value": 314757.3,
+      "unrealized_pnl": 207828.5,
+      "pnl_ratio": 1.9436,
+      "score": 0.9137,
+      "r2": 0.7664,
+      "annualized_return": 1.1922,
+      "pool_scores": {
+        "518880": {
+          "score": 0.6507,
+          "r2": 0.6895,
+          "annualized_return": 0.9438
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0.9137,
+          "r2": 0.7664,
+          "annualized_return": 1.1922
+        },
+        "510300": {
+          "score": 0.7112,
+          "r2": 0.8417,
+          "annualized_return": 0.845
+        }
+      }
+    },
+    {
+      "date": "2026-01-16",
+      "time": "14:51:00",
+      "code": "159915",
+      "name": "创业板ETF",
+      "quantity": 31900,
+      "price": 9.857,
+      "market_value": 314438.3,
+      "unrealized_pnl": 207509.5,
+      "pnl_ratio": 1.9406,
+      "score": 1.1192,
+      "r2": 0.8352,
+      "annualized_return": 1.34,
+      "pool_scores": {
+        "518880": {
+          "score": 0.6223,
+          "r2": 0.6837,
+          "annualized_return": 0.9101
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 1.1192,
+          "r2": 0.8352,
+          "annualized_return": 1.34
+        },
+        "510300": {
+          "score": 0.7118,
+          "r2": 0.842,
+          "annualized_return": 0.8454
+        }
+      }
+    },
+    {
+      "date": "2026-01-19",
+      "time": "14:51:00",
+      "code": "159915",
+      "name": "创业板ETF",
+      "quantity": 31900,
+      "price": 10.006,
+      "market_value": 319191.4,
+      "unrealized_pnl": 212262.6,
+      "pnl_ratio": 1.9851,
+      "score": 1.1209,
+      "r2": 0.8357,
+      "annualized_return": 1.3412,
+      "pool_scores": {
+        "518880": {
+          "score": 0.63,
+          "r2": 0.6839,
+          "annualized_return": 0.9213
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 1.1209,
+          "r2": 0.8357,
+          "annualized_return": 1.3412
+        },
+        "510300": {
+          "score": 0.6525,
+          "r2": 0.8139,
+          "annualized_return": 0.8017
+        }
+      }
+    },
+    {
+      "date": "2026-01-20",
+      "time": "19:29:11",
+      "code": "518880",
+      "name": "黄金ETF",
+      "quantity": 10605,
+      "price": 10.082,
+      "market_value": 106919.61,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": 0.6867,
+      "r2": 0.6909,
+      "annualized_return": 0.9939,
+      "pool_scores": {
+        "518880": {
+          "score": 0.6867,
+          "r2": 0.6909,
+          "annualized_return": 0.9939
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "510300": {
+          "score": 0.589,
+          "r2": 0.777,
+          "annualized_return": 0.7581
+        }
+      }
+    },
+    {
+      "date": "2026-01-21",
+      "time": "15:02:44",
+      "code": "518880",
+      "name": "黄金ETF",
+      "quantity": 10479,
+      "price": 10.377,
+      "market_value": 108740.58,
+      "unrealized_pnl": -681.13,
+      "pnl_ratio": -0.0062,
+      "score": 0.8722,
+      "r2": 0.6988,
+      "annualized_return": 1.2482,
+      "pool_scores": {
+        "518880": {
+          "score": 0.8722,
+          "r2": 0.6988,
+          "annualized_return": 1.2482
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0.8436,
+          "r2": 0.7372,
+          "annualized_return": 1.1443
+        },
+        "510300": {
+          "score": 0.4959,
+          "r2": 0.7244,
+          "annualized_return": 0.6846
+        }
+      }
+    },
+    {
+      "date": "2026-01-22",
+      "time": "14:50:37",
+      "code": "518880",
+      "name": "黄金ETF",
+      "quantity": 10479,
+      "price": 10.442,
+      "market_value": 109421.72,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": 0.9795,
+      "r2": 0.7054,
+      "annualized_return": 1.3886,
+      "pool_scores": {
+        "518880": {
+          "score": 0.9795,
+          "r2": 0.7054,
+          "annualized_return": 1.3886
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0.6522,
+          "r2": 0.6941,
+          "annualized_return": 0.9397
+        },
+        "510300": {
+          "score": 0.3657,
+          "r2": 0.6576,
+          "annualized_return": 0.5561
+        }
+      }
+    },
+    {
+      "date": "2026-01-23",
+      "time": "14:31:01",
+      "code": "518880",
+      "name": "黄金ETF",
+      "quantity": 10479,
+      "price": 10.614,
+      "market_value": 111224.11,
+      "unrealized_pnl": 1802.39,
+      "pnl_ratio": 0.0165,
+      "score": 1.198,
+      "r2": 0.7064,
+      "annualized_return": 1.6959,
+      "pool_scores": {
+        "518880": {
+          "score": 1.198,
+          "r2": 0.7064,
+          "annualized_return": 1.6959
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0.6221,
+          "r2": 0.6817,
+          "annualized_return": 0.9127
+        },
+        "510300": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        }
+      }
+    },
+    {
+      "date": "2026-01-26",
+      "time": "14:51:00",
+      "code": "518880",
+      "name": "黄金ETF",
+      "quantity": 10479,
+      "price": 1.698,
+      "market_value": 17793.34,
+      "unrealized_pnl": -91628.38,
+      "pnl_ratio": -0.8374,
+      "score": 1.5173,
+      "r2": 0.6978,
+      "annualized_return": 2.1746,
+      "pool_scores": {
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0,
+          "risk_filtered": false
+        },
+        "159509": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0,
+          "risk_filtered": false
+        },
+        "513520": {
+          "score": 0.313,
+          "r2": 0.5899,
+          "annualized_return": 0.5305,
+          "risk_filtered": false
+        },
+        "513030": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0,
+          "risk_filtered": false
+        },
+        "518880": {
+          "score": 1.5173,
+          "r2": 0.6978,
+          "annualized_return": 2.1746,
+          "risk_filtered": false
+        },
+        "159980": {
+          "score": 1.7501,
+          "r2": 0.7637,
+          "annualized_return": 2.2916,
+          "risk_filtered": false
+        },
+        "159985": {
+          "score": 0.0122,
+          "r2": 0.1563,
+          "annualized_return": 0.078,
+          "risk_filtered": false
+        },
+        "159981": {
+          "score": 0.3599,
+          "r2": 0.522,
+          "annualized_return": 0.6895,
+          "risk_filtered": false
+        },
+        "501018": {
+          "score": 1.2001,
+          "r2": 0.6806,
+          "annualized_return": 1.7633,
+          "risk_filtered": false
+        },
+        "511090": {
+          "score": 0,
+          "r2": 0.1036,
+          "annualized_return": -0.0768,
+          "risk_filtered": false
+        },
+        "513130": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0,
+          "risk_filtered": false
+        },
+        "513690": {
+          "score": 0.1654,
+          "r2": 0.5669,
+          "annualized_return": 0.2917,
+          "risk_filtered": false
+        },
+        "510180": {
+          "score": 0.5134,
+          "r2": 0.7002,
+          "annualized_return": 0.7332,
+          "risk_filtered": false
+        },
+        "159915": {
+          "score": 0.4609,
+          "r2": 0.6266,
+          "annualized_return": 0.7356,
+          "risk_filtered": false
+        },
+        "510410": {
+          "score": 6.4387,
+          "r2": 0.9578,
+          "annualized_return": 6.7223,
+          "risk_filtered": false
+        },
+        "515650": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0,
+          "risk_filtered": false
+        },
+        "512290": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0,
+          "risk_filtered": false
+        },
+        "588120": {
+          "score": 8.1735,
+          "r2": 0.9151,
+          "annualized_return": 8.9322,
+          "risk_filtered": false
+        },
+        "515070": {
+          "score": 2.2898,
+          "r2": 0.8161,
+          "annualized_return": 2.8058,
+          "risk_filtered": false
+        },
+        "159851": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0,
+          "risk_filtered": false
+        },
+        "159637": {
+          "score": 0.998,
+          "r2": 0.7145,
+          "annualized_return": 1.3968,
+          "risk_filtered": false
+        },
+        "516160": {
+          "score": 1.6899,
+          "r2": 0.863,
+          "annualized_return": 1.9582,
+          "risk_filtered": false
+        },
+        "159550": {
+          "score": 1.6717,
+          "r2": 0.6332,
+          "annualized_return": 2.64,
+          "risk_filtered": false
+        },
+        "512710": {
+          "score": null,
+          "r2": null,
+          "annualized_return": null,
+          "risk_filtered": true
+        },
+        "159692": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0,
+          "risk_filtered": false
+        },
+        "512480": {
+          "score": 8.3144,
+          "r2": 0.9385,
+          "annualized_return": 8.8593,
+          "risk_filtered": false
+        },
+        "515250": {
+          "score": 2.1121,
+          "r2": 0.8011,
+          "annualized_return": 2.6364,
+          "risk_filtered": false
+        },
+        "159378": {
+          "score": 8.1119,
+          "r2": 0.7247,
+          "annualized_return": 11.194,
+          "risk_filtered": false
+        },
+        "516510": {
+          "score": 6.0969,
+          "r2": 0.7455,
+          "annualized_return": 8.1784,
+          "risk_filtered": false
+        },
+        "515050": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0,
+          "risk_filtered": false
+        },
+        "159995": {
+          "score": 6.8157,
+          "r2": 0.9305,
+          "annualized_return": 7.3249,
+          "risk_filtered": false
+        },
+        "515790": {
+          "score": 3.8555,
+          "r2": 0.885,
+          "annualized_return": 4.3564,
+          "risk_filtered": false
+        },
+        "515000": {
+          "score": 1.3733,
+          "r2": 0.8455,
+          "annualized_return": 1.6242,
+          "risk_filtered": false
+        }
+      }
+    },
+    {
+      "date": "2026-01-27",
+      "time": "14:44:49",
+      "code": "512480",
+      "name": "半导体",
+      "quantity": 16676,
+      "price": 1.741,
+      "market_value": 29032.92,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": 7.6064,
+      "r2": 0.9331,
+      "annualized_return": 8.1521,
+      "pool_scores": {
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159509": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513520": {
+          "score": 0.3324,
+          "r2": 0.6066,
+          "annualized_return": 0.548
+        },
+        "513030": {
+          "score": 0.0762,
+          "r2": 0.2331,
+          "annualized_return": 0.3269
+        },
+        "518880": {
+          "score": 1.8574,
+          "r2": 0.71,
+          "annualized_return": 2.6161
+        },
+        "159980": {
+          "score": 1.5162,
+          "r2": 0.7413,
+          "annualized_return": 2.0454
+        },
+        "159985": {
+          "score": 0.0078,
+          "r2": 0.1199,
+          "annualized_return": 0.0651
+        },
+        "159981": {
+          "score": 0.2919,
+          "r2": 0.4897,
+          "annualized_return": 0.5962
+        },
+        "501018": {
+          "score": 1.6055,
+          "r2": 0.6873,
+          "annualized_return": 2.3361
+        },
+        "511090": {
+          "score": 0,
+          "r2": 0.0435,
+          "annualized_return": -0.0499
+        },
+        "513130": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513690": {
+          "score": 0.2298,
+          "r2": 0.6352,
+          "annualized_return": 0.3618
+        },
+        "510180": {
+          "score": 0.4103,
+          "r2": 0.6468,
+          "annualized_return": 0.6343
+        },
+        "159915": {
+          "score": 0.3429,
+          "r2": 0.5852,
+          "annualized_return": 0.5859
+        },
+        "510410": {
+          "score": 6.6771,
+          "r2": 0.9581,
+          "annualized_return": 6.9689
+        },
+        "515650": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512290": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "588120": {
+          "score": 7.4209,
+          "r2": 0.9079,
+          "annualized_return": 8.174
+        },
+        "515070": {
+          "score": 1.9546,
+          "r2": 0.79,
+          "annualized_return": 2.4742
+        },
+        "159851": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159637": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "516160": {
+          "score": 1.5074,
+          "r2": 0.8644,
+          "annualized_return": 1.7438
+        },
+        "159550": {
+          "score": 1.4624,
+          "r2": 0.5993,
+          "annualized_return": 2.4402
+        },
+        "159692": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512480": {
+          "score": 7.6064,
+          "r2": 0.9331,
+          "annualized_return": 8.1521
+        },
+        "515250": {
+          "score": 1.6265,
+          "r2": 0.7401,
+          "annualized_return": 2.1978
+        },
+        "159378": {
+          "score": 5.9435,
+          "r2": 0.6715,
+          "annualized_return": 8.8508
+        },
+        "516510": {
+          "score": 5.0912,
+          "r2": 0.7104,
+          "annualized_return": 7.1671
+        },
+        "515050": {
+          "score": 0.2586,
+          "r2": 0.5141,
+          "annualized_return": 0.5031
+        },
+        "159995": {
+          "score": 6.2196,
+          "r2": 0.9232,
+          "annualized_return": 6.7368
+        },
+        "515790": {
+          "score": 4.088,
+          "r2": 0.8867,
+          "annualized_return": 4.6103
+        },
+        "515000": {
+          "score": 1.1865,
+          "r2": 0.8345,
+          "annualized_return": 1.4218
+        }
+      }
+    }
+  ],
+  "last_update_date": "2026-01-27"
+}

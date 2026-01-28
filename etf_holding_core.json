@@ -1,0 +1,409 @@
+{
+  "current_holding": {
+    "code": "518880",
+    "name": "黄金ETF",
+    "quantity": 10479,
+    "entry_price": 10.442,
+    "entry_date": "2026-01-21",
+    "entry_time": "14:51"
+  },
+  "trade_history": [
+    {
+      "date": "2026-01-15",
+      "time": "14:51",
+      "action": "买入",
+      "code": "159915",
+      "name": "创业板ETF",
+      "price": 3.352,
+      "quantity": 31900,
+      "reason": "初始持仓"
+    },
+    {
+      "date": "2026-01-20",
+      "time": "14:50",
+      "action": "卖出",
+      "code": "159915",
+      "name": "创业板ETF",
+      "price": 3.352,
+      "quantity": 31900,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-20",
+      "time": "14:51",
+      "action": "买入",
+      "code": "518880",
+      "name": "黄金ETF",
+      "price": 10.082,
+      "quantity": 10605,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-21",
+      "time": "14:50",
+      "action": "卖出",
+      "code": "518880",
+      "name": "黄金ETF",
+      "price": 10.344,
+      "quantity": 10605,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-21",
+      "time": "14:51",
+      "action": "买入",
+      "code": "159915",
+      "name": "创业板ETF",
+      "price": 3.305,
+      "quantity": 33191,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-21",
+      "time": "14:50",
+      "action": "卖出",
+      "code": "159915",
+      "name": "创业板ETF",
+      "price": 3.297,
+      "quantity": 33191,
+      "reason": "轮动调仓"
+    },
+    {
+      "date": "2026-01-21",
+      "time": "14:51",
+      "action": "买入",
+      "code": "518880",
+      "name": "黄金ETF",
+      "price": 10.442,
+      "quantity": 10479,
+      "reason": "轮动调仓"
+    }
+  ],
+  "daily_log": [
+    {
+      "date": "2026-01-15",
+      "time": "14:51:00",
+      "code": "159915",
+      "name": "创业板ETF",
+      "quantity": 31900,
+      "price": 9.867,
+      "market_value": 314757.3,
+      "unrealized_pnl": 207828.5,
+      "pnl_ratio": 1.9436,
+      "score": 0.9137,
+      "r2": 0.7664,
+      "annualized_return": 1.1922,
+      "pool_scores": {
+        "518880": {
+          "score": 0.6507,
+          "r2": 0.6895,
+          "annualized_return": 0.9438
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0.9137,
+          "r2": 0.7664,
+          "annualized_return": 1.1922
+        },
+        "510300": {
+          "score": 0.7112,
+          "r2": 0.8417,
+          "annualized_return": 0.845
+        }
+      }
+    },
+    {
+      "date": "2026-01-16",
+      "time": "14:51:00",
+      "code": "159915",
+      "name": "创业板ETF",
+      "quantity": 31900,
+      "price": 9.857,
+      "market_value": 314438.3,
+      "unrealized_pnl": 207509.5,
+      "pnl_ratio": 1.9406,
+      "score": 1.1192,
+      "r2": 0.8352,
+      "annualized_return": 1.34,
+      "pool_scores": {
+        "518880": {
+          "score": 0.6223,
+          "r2": 0.6837,
+          "annualized_return": 0.9101
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 1.1192,
+          "r2": 0.8352,
+          "annualized_return": 1.34
+        },
+        "510300": {
+          "score": 0.7118,
+          "r2": 0.842,
+          "annualized_return": 0.8454
+        }
+      }
+    },
+    {
+      "date": "2026-01-19",
+      "time": "14:51:00",
+      "code": "159915",
+      "name": "创业板ETF",
+      "quantity": 31900,
+      "price": 10.006,
+      "market_value": 319191.4,
+      "unrealized_pnl": 212262.6,
+      "pnl_ratio": 1.9851,
+      "score": 1.1209,
+      "r2": 0.8357,
+      "annualized_return": 1.3412,
+      "pool_scores": {
+        "518880": {
+          "score": 0.63,
+          "r2": 0.6839,
+          "annualized_return": 0.9213
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 1.1209,
+          "r2": 0.8357,
+          "annualized_return": 1.3412
+        },
+        "510300": {
+          "score": 0.6525,
+          "r2": 0.8139,
+          "annualized_return": 0.8017
+        }
+      }
+    },
+    {
+      "date": "2026-01-20",
+      "time": "19:29:11",
+      "code": "518880",
+      "name": "黄金ETF",
+      "quantity": 10605,
+      "price": 10.082,
+      "market_value": 106919.61,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": 0.6867,
+      "r2": 0.6909,
+      "annualized_return": 0.9939,
+      "pool_scores": {
+        "518880": {
+          "score": 0.6867,
+          "r2": 0.6909,
+          "annualized_return": 0.9939
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "510300": {
+          "score": 0.589,
+          "r2": 0.777,
+          "annualized_return": 0.7581
+        }
+      }
+    },
+    {
+      "date": "2026-01-21",
+      "time": "15:02:44",
+      "code": "518880",
+      "name": "黄金ETF",
+      "quantity": 10479,
+      "price": 10.377,
+      "market_value": 108740.58,
+      "unrealized_pnl": -681.13,
+      "pnl_ratio": -0.0062,
+      "score": 0.8722,
+      "r2": 0.6988,
+      "annualized_return": 1.2482,
+      "pool_scores": {
+        "518880": {
+          "score": 0.8722,
+          "r2": 0.6988,
+          "annualized_return": 1.2482
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0.8436,
+          "r2": 0.7372,
+          "annualized_return": 1.1443
+        },
+        "510300": {
+          "score": 0.4959,
+          "r2": 0.7244,
+          "annualized_return": 0.6846
+        }
+      }
+    },
+    {
+      "date": "2026-01-22",
+      "time": "14:50:37",
+      "code": "518880",
+      "name": "黄金ETF",
+      "quantity": 10479,
+      "price": 10.442,
+      "market_value": 109421.72,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": 0.9795,
+      "r2": 0.7054,
+      "annualized_return": 1.3886,
+      "pool_scores": {
+        "518880": {
+          "score": 0.9795,
+          "r2": 0.7054,
+          "annualized_return": 1.3886
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0.6522,
+          "r2": 0.6941,
+          "annualized_return": 0.9397
+        },
+        "510300": {
+          "score": 0.3657,
+          "r2": 0.6576,
+          "annualized_return": 0.5561
+        }
+      }
+    },
+    {
+      "date": "2026-01-23",
+      "time": "14:44:54",
+      "code": "518880",
+      "name": "黄金ETF",
+      "quantity": 10479,
+      "price": 10.613,
+      "market_value": 111213.63,
+      "unrealized_pnl": 1791.91,
+      "pnl_ratio": 0.0164,
+      "score": 1.1977,
+      "r2": 0.7065,
+      "annualized_return": 1.6953,
+      "pool_scores": {
+        "518880": {
+          "score": 1.1977,
+          "r2": 0.7065,
+          "annualized_return": 1.6953
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0.6254,
+          "r2": 0.6832,
+          "annualized_return": 0.9153
+        },
+        "510300": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        }
+      }
+    },
+    {
+      "date": "2026-01-26",
+      "time": "20:28:27",
+      "code": "518880",
+      "name": "黄金ETF",
+      "quantity": 10479,
+      "price": 10.924,
+      "market_value": 114472.6,
+      "unrealized_pnl": 5050.88,
+      "pnl_ratio": 0.0462,
+      "score": 1.5173,
+      "r2": 0.6978,
+      "annualized_return": 2.1746,
+      "pool_scores": {
+        "518880": {
+          "score": 1.5173,
+          "r2": 0.6978,
+          "annualized_return": 2.1746
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "510300": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        }
+      }
+    },
+    {
+      "date": "2026-01-27",
+      "time": "09:35:41",
+      "code": "518880",
+      "name": "黄金ETF",
+      "quantity": 10479,
+      "price": 10.874,
+      "market_value": 113948.65,
+      "unrealized_pnl": 4526.93,
+      "pnl_ratio": 0.0414,
+      "score": 1.5042,
+      "r2": 0.7025,
+      "annualized_return": 2.1411,
+      "pool_scores": {
+        "518880": {
+          "score": 1.5042,
+          "r2": 0.7025,
+          "annualized_return": 2.1411
+        },
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "510300": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        }
+      }
+    }
+  ],
+  "last_update_date": "2026-01-21"
+}
