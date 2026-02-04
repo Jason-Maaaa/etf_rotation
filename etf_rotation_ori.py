@@ -11,124 +11,303 @@ import os
 import random
 from pathlib import Path
 from etf_config import POOL_DICT
+import requests
 
-# ======================== 全局伪装：给所有网络请求加上浏览器Headers ========================
-
-try:
-    import requests
-    from requests.adapters import HTTPAdapter
-    from urllib3.util.retry import Retry
-
-    # 强行给 requests 打补丁，加上全局 Headers
-    def _get_headers():
-        return {
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            "Accept": "*/*",
-            "Accept-Language": "zh-CN,zh;q=0.9",
-            "Connection": "keep-alive",
-        }
-
-    # 覆盖默认的 requests 方法（可选，但通常很有用）
-    session = requests.Session()
-    adapter = HTTPAdapter(max_retries=Retry(total=3, backoff_factor=1, status_forcelist=[500, 502, 503, 504]))
-    session.mount("http://", adapter)
-    session.mount("https://", adapter)
-    
-    # 给 session 设置默认 headers
-    session.headers.update(_get_headers())
-    
-    # 如果 akshare 内部使用 requests，这个补丁会生效
-    # 注意：akshare 可能使用自己的 session，但至少我们的 session 已经配置好了
-    print("✅ 全局请求伪装已启用（Chrome User-Agent）")
-except ImportError:
-    print("⚠️ 警告：requests 模块未安装，跳过全局伪装设置")
-
-# ======================== 带重试机制的数据抓取函数 ========================
-
-def fetch_with_retry(symbol, name, max_retries=1, period="daily", adjust="qfq", start_date=None, end_date=None):
+def fetch_em_hist(symbol, name, start_date=None, end_date=None, adjust="qfq"):
     """
-    升级版：带重试机制和随机延迟的数据抓取（使用指数退避策略）
+    【东财源-历史数据】使用 ak.fund_etf_hist_em 获取 ETF 复权数据
     
-    参数:
-        symbol: ETF代码
+    Args:
+        symbol: ETF代码（6位数字，如 '159915'）
         name: ETF名称（用于日志）
-        max_retries: 最大重试次数（默认1次）
-        period: 数据周期（默认"daily"）
-        adjust: 复权类型（默认"qfq"前复权）
-        start_date: 开始日期（可选，格式：YYYYMMDD）
-        end_date: 结束日期（可选，格式：YYYYMMDD）
-    
-    返回:
-        DataFrame: 成功时返回数据，失败时返回空DataFrame
+        start_date: 开始日期字符串，格式 'YYYY-MM-DD' 或 'YYYYMMDD'
+        end_date: 结束日期字符串，格式 'YYYY-MM-DD' 或 'YYYYMMDD'
+        adjust: 复权类型，'qfq' 表示前复权（默认）
     """
-    for i in range(max_retries):
+    try:
+        # 东财接口需要完整的ETF代码（带市场前缀）
+        # 自动识别市场前缀：1/0/3开头为深市，其他为沪市
+        if symbol.startswith(('1', '0', '3')):
+            full_symbol = f"sz{symbol}"  # 深市
+        else:
+            full_symbol = f"sh{symbol}"  # 沪市
+        
+        # 使用东财ETF历史数据接口
+        # 注意：akshare 的 fund_etf_hist_em 接口参数可能因版本而异
+        # 如果接口不支持 start_date/end_date，则获取全量数据后本地筛选
         try:
-            # 随机延迟，模拟人类操作的不确定性（2-5秒）
-            time.sleep(random.uniform(2, 5))
-            
-            # 根据参数决定调用方式
-            if start_date and end_date:
+            # 尝试使用日期参数（如果接口支持）
+            if start_date or end_date:
+                start_str = start_date.replace("-", "") if start_date and "-" in start_date else (start_date if start_date else "20000101")
+                end_str = end_date.replace("-", "") if end_date and "-" in end_date else (end_date if end_date else datetime.now().strftime("%Y%m%d"))
                 df = ak.fund_etf_hist_em(
-                    symbol=symbol, 
-                    period=period, 
-                    start_date=start_date, 
-                    end_date=end_date, 
+                    symbol=full_symbol, 
+                    period="daily", 
+                    start_date=start_str,
+                    end_date=end_str,
                     adjust=adjust
                 )
             else:
+                # 如果没有指定日期，获取全量数据
                 df = ak.fund_etf_hist_em(
-                    symbol=symbol, 
-                    period=period, 
+                    symbol=full_symbol, 
+                    period="daily", 
                     adjust=adjust
                 )
+        except TypeError:
+            # 如果接口不支持日期参数，获取全量数据后本地筛选
+            df = ak.fund_etf_hist_em(
+                symbol=full_symbol, 
+                period="daily", 
+                adjust=adjust
+            )
+        
+        if df is not None and not df.empty:
+            # 统一列名以兼容脚本后续的 hist['收盘'] 等逻辑
+            # 东财返回的列名可能已经是中文，检查并统一
+            rename_dict = {}
+            if '日期' in df.columns:
+                pass  # 已经是中文列名
+            elif 'date' in df.columns:
+                rename_dict['date'] = '日期'
             
-            if not df.empty:
-                return df
+            if '开盘' not in df.columns and 'open' in df.columns:
+                rename_dict['open'] = '开盘'
+            if '收盘' not in df.columns and 'close' in df.columns:
+                rename_dict['close'] = '收盘'
+            if '最高' not in df.columns and 'high' in df.columns:
+                rename_dict['high'] = '最高'
+            if '最低' not in df.columns and 'low' in df.columns:
+                rename_dict['low'] = '最低'
+            if '成交量' not in df.columns and 'volume' in df.columns:
+                rename_dict['volume'] = '成交量'
+            if '成交额' not in df.columns and 'amount' in df.columns:
+                rename_dict['amount'] = '成交额'
+            
+            if rename_dict:
+                df.rename(columns=rename_dict, inplace=True)
+            
+            # 确保日期列存在并转换为datetime
+            if '日期' in df.columns:
+                df['日期'] = pd.to_datetime(df['日期'])
             else:
-                # 数据为空，也进行重试
-                if i < max_retries - 1:
-                    print(f"🔄 {name}({symbol}) 返回空数据，正在进行第 {i+1} 次重试...")
-                else:
-                    print(f"⚠️ {name}({symbol}) 最终返回空数据")
-                    
-        except Exception as e:
-            if i < max_retries - 1:
-                print(f"🔄 {name}({symbol}) 遭拒绝，第 {i+1} 次重试... 错误: {str(e)[:50]}")
-            else:
-                print(f"❌ {name}({symbol}) 最终失败: {e}")
+                print(f"⚠️ {name}({symbol}) 东财数据缺少日期列")
+                return pd.DataFrame()
+            
+            # 在内存中进行日期筛选
+            # 统一日期格式处理：支持 'YYYY-MM-DD' 和 'YYYYMMDD' 两种格式
+            if start_date:
+                # 如果是 YYYYMMDD 格式，转换为 YYYY-MM-DD
+                if len(start_date) == 8 and '-' not in start_date:
+                    start_date = f"{start_date[:4]}-{start_date[4:6]}-{start_date[6:8]}"
+                df = df[df['日期'] >= pd.to_datetime(start_date)]
+            if end_date:
+                # 如果是 YYYYMMDD 格式，转换为 YYYY-MM-DD
+                if len(end_date) == 8 and '-' not in end_date:
+                    end_date = f"{end_date[:4]}-{end_date[4:6]}-{end_date[6:8]}"
+                df = df[df['日期'] <= pd.to_datetime(end_date)]
+            
+            return df.sort_values('日期').reset_index(drop=True)
+    except Exception as e:
+        print(f"❌ {name}({symbol}) 东财历史接口报错: {e}")
     
     return pd.DataFrame()
 
-def fetch_spot_with_retry(max_retries=2):
+
+def fetch_with_retry(symbol, name, max_retries=1, period="daily", adjust="qfq", start_date=None, end_date=None, source="tx"):
     """
-    升级版：带重试机制和随机延迟的实时数据抓取（使用指数退避策略）
-    
-    参数:
-        max_retries: 最大重试次数（默认2次）
-    
-    返回:
-        (DataFrame, str): (实时数据, 获取时间) 或 (None, None)
+    统一历史数据入口，根据 source 参数切换数据源
+    - source="tx": 使用腾讯接口（默认）
+    - source="em": 使用东财接口
     """
+    if source == "em":
+        # 使用东财接口
+        for i in range(max_retries):
+            try:
+                # 随机延迟
+                time.sleep(random.uniform(1, 2))
+                df = fetch_em_hist(symbol, name, start_date=start_date, end_date=end_date, adjust=adjust)
+                if df is not None and not df.empty:
+                    return df
+            except Exception as e:
+                if i < max_retries - 1:
+                    print(f"🔄 {name}({symbol}) 东财历史接口受阻，重试 {i+1}... 错误: {str(e)[:50]}")
+        return pd.DataFrame()
+    
+    # 默认使用腾讯接口（原有逻辑）
+    # 自动识别市场前缀
+    full_symbol = f"sz{symbol}" if symbol.startswith(('1', '0', '3')) else f"sh{symbol}"
+    
     for i in range(max_retries):
         try:
-            # 随机延迟，模拟人类操作的不确定性（2-5秒）
-            time.sleep(random.uniform(2, 5))
+            # 随机延迟，腾讯接口虽然宽容，但也建议保留 2-4 秒间隔
+            time.sleep(random.uniform(2, 4))
             
-            df_spot = ak.fund_etf_spot_em()
-            fetch_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            return df_spot, fetch_time
+            # 使用腾讯全量历史接口
+            df = ak.stock_zh_a_hist_tx(symbol=full_symbol)
+            
+            if df is not None and not df.empty:
+                # 统一列名以兼容你脚本后续的 hist['收盘'] 等逻辑
+                rename_dict = {
+                    'date': '日期',
+                    'open': '开盘',
+                    'close': '收盘',
+                    'high': '最高',
+                    'low': '最低',
+                    'amount': '成交额'
+                }
+                # 如果存在 volume 字段，也重命名为 成交量
+                if 'volume' in df.columns:
+                    rename_dict['volume'] = '成交量'
+                df.rename(columns=rename_dict, inplace=True)
+                
+                df['日期'] = pd.to_datetime(df['日期'])
+                
+                # 在内存中进行日期筛选
+                if start_date:
+                    df = df[df['日期'] >= pd.to_datetime(start_date)]
+                if end_date:
+                    df = df[df['日期'] <= pd.to_datetime(end_date)]
+                
+                return df.sort_values('日期').reset_index(drop=True)
         except Exception as e:
             if i < max_retries - 1:
-                print(f"🔄 获取实时数据失败，第 {i+1} 次重试... 错误: {str(e)[:50]}")
-            else:
-                print(f"❌ 最终获取实时数据失败: {e}")
+                print(f"🔄 {name}({symbol}) 腾讯历史接口受阻，重试 {i+1}... 错误: {str(e)[:50]}")
+    
+    return pd.DataFrame()
+
+
+def fetch_em_spot():
+    """
+    【东财实时源】使用 ak.stock_zh_a_spot_em 获取全市场快照并进行代码过滤
+    """
+    try:
+        # 东财实时快照包含全量 A 股和 ETF
+        df_spot_all = ak.stock_zh_a_spot_em()
+        if df_spot_all is not None and not df_spot_all.empty:
+            # 统一字段名映射（东财返回的列名可能是中文或英文，需要统一）
+            # 检查列名并统一为中文
+            column_mapping = {}
+            if '代码' in df_spot_all.columns:
+                pass  # 已经是中文
+            elif 'code' in df_spot_all.columns:
+                column_mapping['code'] = '代码'
+            
+            if '名称' not in df_spot_all.columns and 'name' in df_spot_all.columns:
+                column_mapping['name'] = '名称'
+            if '最新价' not in df_spot_all.columns and '最新' in df_spot_all.columns:
+                column_mapping['最新'] = '最新价'
+            elif '最新价' not in df_spot_all.columns and 'current' in df_spot_all.columns:
+                column_mapping['current'] = '最新价'
+            if '成交量' not in df_spot_all.columns and 'volume' in df_spot_all.columns:
+                column_mapping['volume'] = '成交量'
+            
+            if column_mapping:
+                df_spot_all.rename(columns=column_mapping, inplace=True)
+            
+            # 提取需要的列：代码、名称、最新价、成交量
+            required_cols = ['代码', '名称', '最新价']
+            if '成交量' in df_spot_all.columns:
+                required_cols.append('成交量')
+            
+            # 检查必需的列是否存在
+            missing_cols = [col for col in required_cols if col not in df_spot_all.columns]
+            if missing_cols:
+                print(f"⚠️ 东财实时数据缺少列: {missing_cols}")
                 return None, None
+            
+            # 筛选出需要的列
+            df_spot = df_spot_all[required_cols].copy()
+            
+            # 确保代码列为字符串类型，并统一格式（去除前缀，只保留6位代码）
+            if '代码' in df_spot.columns:
+                df_spot['代码'] = df_spot['代码'].astype(str).str.replace('sz', '').str.replace('sh', '').str.zfill(6)
+            
+            # 确保最新价为数值类型
+            if '最新价' in df_spot.columns:
+                df_spot['最新价'] = pd.to_numeric(df_spot['最新价'], errors='coerce')
+            
+            # 确保成交量为数值类型（如果存在）
+            if '成交量' in df_spot.columns:
+                df_spot['成交量'] = pd.to_numeric(df_spot['成交量'], errors='coerce')
+            
+            fetch_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            return df_spot, fetch_time
+    except Exception as e:
+        print(f"❌ 东财实时接口报错: {e}")
     
     return None, None
 
-# ======================== 配置区 ========================
 
-# 持仓记录文件路径
+def fetch_spot_with_retry(max_retries=1, source="tx"):
+    """
+    统一实时行情入口，根据 source 参数切换数据源
+    - source="tx": 使用腾讯接口（默认）
+    - source="em": 使用东财接口
+    """
+    if source == "em":
+        # 使用东财接口
+        for i in range(max_retries):
+            try:
+                # 随机延迟
+                time.sleep(random.uniform(1, 2))
+                df_spot, fetch_time = fetch_em_spot()
+                if df_spot is not None and not df_spot.empty:
+                    return df_spot, fetch_time
+            except Exception as e:
+                if i < max_retries - 1:
+                    print(f"🔄 东财实时接口受阻，重试 {i+1}/{max_retries}... 错误: {e}")
+        return None, None
+    
+    # 默认使用腾讯接口（原有逻辑）
+    # 1. 汇总池子里所有需要监控的代码
+    symbols = []
+    for pool in POOL_DICT.values():
+        for code in pool.keys():
+            prefix = "sz" if code.startswith(('1', '0', '3')) else "sh"
+            symbols.append(f"{prefix}{code}")
+    
+    # 2. 构造腾讯批量查询 URL (这正是你 test.py 成功的拿数据方式)
+    url = f"http://qt.gtimg.cn/q={','.join(list(set(symbols)))}"
+    
+    for i in range(max_retries):
+        try:
+            # 模拟人类随机停顿
+            time.sleep(random.uniform(1.5, 3.0))
+            
+            # 直接使用 requests 发送请求
+            resp = requests.get(url, timeout=5)
+            if resp.status_code == 200:
+                # 解析腾讯原始文本数据
+                lines = resp.text.split(';')
+                data_list = []
+                for line in lines:
+                    parts = line.split('~')
+                    if len(parts) > 3:
+                        spot_item = {
+                            '代码': parts[2],      # 对应 159915 等 6 位代码
+                            '名称': parts[1],      # 对应 创业板ETF 等
+                            '最新价': float(parts[3]) # 对应当前现价
+                        }
+                        # 添加成交量字段（parts[6] 是成交量-手，需要转换为股）
+                        if len(parts) > 6 and parts[6]:
+                            try:
+                                volume_shou = float(parts[6])  # 成交量（手）
+                                volume_gu = volume_shou * 100  # 成交量（股）
+                                spot_item['成交量'] = volume_gu
+                            except (ValueError, TypeError):
+                                pass  # 如果转换失败，跳过成交量字段
+                        data_list.append(spot_item)
+                
+                df_spot = pd.DataFrame(data_list)
+                fetch_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                return df_spot, fetch_time
+            else:
+                print(f"🔄 实时行情返回状态码: {resp.status_code}，正在重试 {i+1}...")
+        except Exception as e:
+            print(f"🔄 实时行情请求受阻，重试 {i+1}/{max_retries}... 错误: {e}")
+            
+    return None, None
 HOLDING_FILE = Path(__file__).parent / "etf_holding.json"
 
 # 初始持仓：2026年1月15日买入31900份创业板ETF
@@ -150,7 +329,8 @@ STRATEGY_CONF = {
     "stop_loss_threshold": -0.07, # 硬止损阈值（-7%）
     "volatility_threshold": 0.30, # 波动率控仓阈值（30%）
     "sell_time": "14:50",        # 默认卖出时间
-    "buy_time": "14:51"          # 默认买入时间
+    "buy_time": "14:51",         # 默认买入时间
+    "use_weighted": True         # 是否使用加权回归（True=聚宽逻辑，False=普通回归）
 }
 
 # ======================== 持仓管理 ========================
@@ -277,13 +457,21 @@ def record_daily_status(holding_data, current_price=0.0, score=None, r2=None, an
     holding_data["daily_log"] = daily_log
     return holding_data
 
-def calculate_etf_score_at_date(symbol, target_date):
-    """计算指定ETF在指定日期的得分"""
+def calculate_etf_score_at_date(symbol, target_date, source="tx", pool_name="core"):
+    """
+    计算指定ETF在指定日期的得分
+    
+    Args:
+        symbol: 股票代码
+        target_date: 目标日期（datetime对象）
+        source: 数据源选择，'tx' 表示腾讯（默认），'em' 表示东财
+        pool_name: ETF池名称，'full'、'core' 或 'custom'，用于确定跌幅阈值
+    """
     try:
         # 获取ETF名称（用于日志）
         name = symbol  # 如果没有名称映射，使用代码
         # 获取历史数据（获取足够多的数据用于计算）
-        hist = fetch_with_retry(symbol, name, max_retries=5)
+        hist = fetch_with_retry(symbol, name, max_retries=5, source=source)
         if hist.empty:
             return None
         
@@ -307,9 +495,25 @@ def calculate_etf_score_at_date(symbol, target_date):
         if len(prices) < max(STRATEGY_CONF["m_days"], STRATEGY_CONF["ma_filter_days"], 5):
             return None
         
-        # 风险过滤：近3日跌幅过大，直接过滤掉
+        # 风险过滤：近4日任意一天跌幅过大（根据pool参数设置不同阈值）
         if len(prices) >= 4:
-            if min(prices[-1]/prices[-2], prices[-2]/prices[-3], prices[-3]/prices[-4]) < 0.95:
+            # 根据pool参数设置跌幅阈值
+            if pool_name == "core":
+                decline_threshold = 0.97  # 3%跌幅
+            elif pool_name == "full":
+                decline_threshold = 0.95  # 5%跌幅
+            elif pool_name == "custom":
+                decline_threshold = 0.95  # 自定义池使用5%跌幅
+            else:
+                decline_threshold = 0.95  # 默认3%
+            
+            # 检查过去4天内是否有任意一天跌幅超过阈值
+            ratio1 = prices[-1] / prices[-2]  # 今天/昨天
+            ratio2 = prices[-2] / prices[-3]  # 昨天/前天
+            ratio3 = prices[-3] / prices[-4]  # 前天/大前天
+            
+            # 只要任意一天跌幅超过阈值就过滤
+            if ratio1 < decline_threshold or ratio2 < decline_threshold or ratio3 < decline_threshold:
                 return {
                     "score": None,
                     "r2": None,
@@ -327,7 +531,9 @@ def calculate_etf_score_at_date(symbol, target_date):
         annualized_return = 0
         if is_up:
             momentum_prices = prices[-STRATEGY_CONF["m_days"]:]
-            score, r2, annualized_return = calculate_momentum(momentum_prices)
+            # 传递加权配置参数
+            use_weighted = STRATEGY_CONF.get("use_weighted", True)
+            score, r2, annualized_return = calculate_momentum(momentum_prices, use_weighted=use_weighted)
         
         return {
             "score": round(score, 4),
@@ -379,8 +585,15 @@ def get_holding_at_date(trade_history, target_date_str):
     
     return current_code, current_name, current_quantity, current_entry_price, current_entry_date
 
-def backfill_daily_log(holding_data, pool_name="core"):
-    """补全缺失的历史每日记录"""
+def backfill_daily_log(holding_data, pool_name="core", source="tx"):
+    """
+    补全缺失的历史每日记录
+    
+    Args:
+        holding_data: 持仓数据字典
+        pool_name: ETF池名称，'full'、'core' 或 'custom'
+        source: 数据源选择，'tx' 表示腾讯（默认），'em' 表示东财
+    """
     daily_log = holding_data.get("daily_log", [])
     current_holding = holding_data["current_holding"]
     trade_history = holding_data.get("trade_history", [])
@@ -442,7 +655,8 @@ def backfill_daily_log(holding_data, pool_name="core"):
             name=name, 
             max_retries=5,
             start_date=start_date_str, 
-            end_date=today.strftime("%Y%m%d")
+            end_date=today.strftime("%Y%m%d"),
+            source=source
         )
         if hist.empty:
             return holding_data
@@ -534,7 +748,7 @@ def backfill_daily_log(holding_data, pool_name="core"):
                 close_price = day_data.iloc[0]['收盘']
                 
                 # 计算当前持仓ETF在历史日期的得分
-                score_result = calculate_etf_score_at_date(code, curr)
+                score_result = calculate_etf_score_at_date(code, curr, source=source, pool_name=pool_name)
                 score = score_result["score"] if score_result else None
                 r2 = score_result["r2"] if score_result else None
                 annualized_return = score_result["annualized_return"] if score_result else None
@@ -544,7 +758,7 @@ def backfill_daily_log(holding_data, pool_name="core"):
                 risk_filtered_count = 0
                 print(f"   📊 计算 {curr_str} 池子中所有ETF得分...", end="")
                 for symbol, name in etf_pool.items():
-                    etf_score_result = calculate_etf_score_at_date(symbol, curr)
+                    etf_score_result = calculate_etf_score_at_date(symbol, curr, source=source, pool_name=pool_name)
                     if etf_score_result:
                         if etf_score_result.get("risk_filtered"):
                             risk_filtered_count += 1
@@ -585,7 +799,7 @@ def backfill_daily_log(holding_data, pool_name="core"):
                 
                 # 如果该日期持仓的ETF与当前持仓不同，需要重新计算该日期持仓ETF的得分
                 if hist_code != code:
-                    hist_score_result = calculate_etf_score_at_date(hist_code, curr)
+                    hist_score_result = calculate_etf_score_at_date(hist_code, curr, source=source, pool_name=pool_name)
                     score = hist_score_result["score"] if hist_score_result else None
                     r2 = hist_score_result["r2"] if hist_score_result else None
                     annualized_return = hist_score_result["annualized_return"] if hist_score_result else None
@@ -654,12 +868,19 @@ def backfill_daily_log(holding_data, pool_name="core"):
         
     return holding_data
 
-def get_entry_price_from_history(symbol, entry_date):
-    """从历史数据获取指定日期的买入价格"""
+def get_entry_price_from_history(symbol, entry_date, source="tx"):
+    """
+    从历史数据获取指定日期的买入价格
+    
+    Args:
+        symbol: 股票代码
+        entry_date: 入场日期字符串，格式 'YYYY-MM-DD'
+        source: 数据源选择，'tx' 表示腾讯（默认），'em' 表示东财
+    """
     try:
         # 获取ETF名称（用于日志）
         name = symbol  # 如果没有名称映射，使用代码
-        hist = fetch_with_retry(symbol, name, max_retries=5)
+        hist = fetch_with_retry(symbol, name, max_retries=5, source=source)
         if hist.empty:
             return None
         entry_date_obj = datetime.strptime(entry_date, "%Y-%m-%d")
@@ -680,12 +901,18 @@ def get_entry_price_from_history(symbol, entry_date):
         print(f"⚠️ 获取历史买入价格失败: {e}")
         return None
 
-def update_holding_price_if_needed(holding_data):
-    """如果入场价格为空，从历史数据补全"""
+def update_holding_price_if_needed(holding_data, source="tx"):
+    """
+    如果入场价格为空，从历史数据补全
+    
+    Args:
+        holding_data: 持仓数据字典
+        source: 数据源选择，'tx' 表示腾讯（默认），'em' 表示东财
+    """
     if holding_data["current_holding"]["entry_price"] is None:
         code = holding_data["current_holding"]["code"]
         entry_date = holding_data["current_holding"]["entry_date"]
-        entry_price = get_entry_price_from_history(code, entry_date)
+        entry_price = get_entry_price_from_history(code, entry_date, source=source)
         if entry_price:
             holding_data["current_holding"]["entry_price"] = float(entry_price)
             save_holding(holding_data)
@@ -694,9 +921,13 @@ def update_holding_price_if_needed(holding_data):
 
 # ======================== 核心逻辑 ========================
 
-def get_realtime_data():
-    """获取实时快照并记录时间（使用带重试机制的抓取）"""
-    return fetch_spot_with_retry(max_retries=5)
+def get_realtime_data(source="tx"):
+    """获取实时快照并记录时间（使用带重试机制的抓取）
+    
+    Args:
+        source: 数据源选择，'tx' 表示腾讯，'em' 表示东财
+    """
+    return fetch_spot_with_retry(max_retries=5, source=source)
 
 def get_price_from_spot(df_spot, symbol, fallback_price=None):
     """从实时数据中安全获取价格，如果失败则返回备选价格"""
@@ -709,25 +940,56 @@ def get_price_from_spot(df_spot, symbol, fallback_price=None):
     
     return fallback_price
 
-def calculate_momentum(prices, debug=False, symbol=""):
-    """复刻 JoinQuant 动量算法
+def calculate_momentum(prices, debug=False, symbol="", use_weighted=True):
+    """计算动量得分
+    Args:
+        prices: 价格序列
+        debug: 是否打印调试模式
+        symbol: 代码（用于debug打印）
+        use_weighted: 是否使用加权线性回归（聚宽版逻辑），默认为True
     返回: (score, r2, annualized_return) 元组
     """
     y = np.log(prices)
     x = np.arange(len(y))
-    slope, intercept, r_value, p_value, std_err = linregress(x, y)
-    annualized_return = np.exp(slope * 250) - 1
-    r2 = r_value ** 2
+    
+    if use_weighted:
+        # === 加权线性回归 (聚宽Pro版逻辑) ===
+        # 权重从1到2线性增加，越近的数据权重越大
+        weights = np.linspace(1, 2, len(y))
+        
+        # 使用 polyfit 进行加权线性拟合 (deg=1 表示一次多项式即线性)
+        slope, intercept = np.polyfit(x, y, 1, w=weights)
+        
+        # 计算加权 R²
+        # 1. 计算预测值
+        y_pred = slope * x + intercept
+        # 2. 计算加权残差平方和 (SS_res)
+        ss_res = np.sum(weights * (y - y_pred) ** 2)
+        # 3. 计算加权总平方和 (SS_tot)
+        # 注意：聚宽原版代码使用的是普通均值 np.mean(y)，此处保持一致以复刻结果
+        ss_tot = np.sum(weights * (y - np.mean(y)) ** 2)
+        
+        r2 = 1 - ss_res / ss_tot if ss_tot != 0 else 0
+        annualized_return = np.exp(slope * 250) - 1
+        
+        if debug:
+            print(f"      [DEBUG {symbol}] 动量计算 (加权Weighted):")
+    else:
+        # === 普通线性回归 (原版逻辑) ===
+        slope, intercept, r_value, p_value, std_err = linregress(x, y)
+        annualized_return = np.exp(slope * 250) - 1
+        r2 = r_value ** 2
+        
+        if debug:
+            print(f"      [DEBUG {symbol}] 动量计算 (普通Ordinary):")
+
     score = annualized_return * r2
     result = max(score, 0)
     
     if debug:
-        print(f"      [DEBUG {symbol}] 动量计算:")
         print(f"        价格序列长度: {len(prices)}")
         print(f"        价格序列(最后5个): {prices[-5:]}")
-        print(f"        对数价格序列(最后5个): {y[-5:]}")
         print(f"        斜率(slope): {slope:.6f}")
-        print(f"        相关系数(r_value): {r_value:.6f}")
         print(f"        年化收益率: {annualized_return:.6f}")
         print(f"        R²: {r2:.6f}")
         print(f"        最终得分: {result:.4f}")
@@ -750,7 +1012,15 @@ def calculate_position_size(base_quantity, volatility, volatility_threshold=0.30
         return int(base_quantity * 0.5)
     return base_quantity
 
-def run_strategy(pool_name="full", debug=False):
+def run_strategy(pool_name="full", debug=False, source="tx"):
+    """
+    运行ETF轮动策略
+    
+    Args:
+        pool_name: ETF池名称，'full'、'core' 或 'custom'
+        debug: 是否开启调试模式
+        source: 数据源选择，'tx' 表示腾讯（默认），'em' 表示东财
+    """
     # 加载持仓记录
     holding_data = load_holding()
     if holding_data is None:
@@ -759,7 +1029,7 @@ def run_strategy(pool_name="full", debug=False):
         print("✅ 已初始化持仓记录")
     
     # 补全入场价格
-    holding_data = update_holding_price_if_needed(holding_data)
+    holding_data = update_holding_price_if_needed(holding_data, source=source)
     
     # 检查是否有初始持仓但没有对应的 trade_history 记录
     current_holding = holding_data["current_holding"]
@@ -796,6 +1066,7 @@ def run_strategy(pool_name="full", debug=False):
     print("="*60)
     print(f"🚀 策略启动时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"🎯 当前使用ETF池: 【{pool_name}】 (共 {len(etf_pool)} 只)")
+    print(f"📡 数据源: 【{source.upper()}】 ({'腾讯' if source == 'tx' else '东财'})")
     
     # 显示当前持仓信息
     if CURRENT_HOLDING:
@@ -804,7 +1075,7 @@ def run_strategy(pool_name="full", debug=False):
         print(f"📦 当前持仓: {holding_name}({CURRENT_HOLDING}) | 数量: {entry_quantity} | 入场价: {entry_price_display}")
     
     # 1. 获取行情
-    df_spot, data_time = get_realtime_data()
+    df_spot, data_time = get_realtime_data(source=source)
     print(f"📊 交易所行情时间: {data_time}")
     print("-" * 60)
     
@@ -816,10 +1087,11 @@ def run_strategy(pool_name="full", debug=False):
     results = []
     positive_count = 0
 
+    # ========== 1. 正式开始逐标的打分 & 选股逻辑 ==========
     for symbol, name in etf_pool.items():
         # 获取历史数据（前复权）- 使用带重试机制的抓取函数
         try:
-            hist_full = fetch_with_retry(symbol, name, max_retries=5)
+            hist_full = fetch_with_retry(symbol, name, max_retries=5, source=source)
             if hist_full.empty:
                 print(f"⚠️ 警告：{name}({symbol}) 无法获取历史数据，跳过。")
                 continue
@@ -849,24 +1121,68 @@ def run_strategy(pool_name="full", debug=False):
                 print(f"实时价格: {current_price}")
             
             # 拼接实时价格进行指标计算
-            hist_closes = hist['收盘'].values[:-1]  # 去掉最后一条（昨天的收盘价）
-            prices = np.append(hist_closes, current_price)
+            # 保留所有历史收盘价（包括昨天的），然后追加今天的价格
+            hist_closes = hist['收盘'].values  # 保留所有历史收盘价，包括昨天的
+            prices = np.append(hist_closes, current_price)  # 追加今天的价格
             
             if debug:
                 print(f"拼接后价格序列(最后10个): {prices[-10:]}")
                 print(f"价格序列总长度: {len(prices)}")
             
-            # 风险过滤：近3日跌幅过大
+            # 风险过滤：近4日任意一天跌幅过大（根据pool参数设置不同阈值）
             if len(prices) >= 4:
-                min_ratio = min(prices[-1]/prices[-2], prices[-2]/prices[-3], prices[-3]/prices[-4])
-                if min_ratio < 0.95:
-                    print(f"⚠️ {name}({symbol}) 风险过滤: 近3日中有连续两日跌幅超过5%，该标的被过滤")
-                    if debug:
-                        print(f"  近3日价格比值: {prices[-1]:.4f}/{prices[-2]:.4f} = {prices[-1]/prices[-2]:.4f}")
-                        print(f"  近2日价格比值: {prices[-2]:.4f}/{prices[-3]:.4f} = {prices[-2]/prices[-3]:.4f}")
-                        print(f"  近1日价格比值: {prices[-3]:.4f}/{prices[-4]:.4f} = {prices[-3]/prices[-4]:.4f}")
-                        print(f"  最小比值: {min_ratio:.4f} < 0.95")
+                # 根据pool参数设置跌幅阈值
+                if pool_name == "core":
+                    decline_threshold = 0.97  # 3%跌幅
+                elif pool_name == "full":
+                    decline_threshold = 0.95  # 5%跌幅
+                elif pool_name == "custom":
+                    decline_threshold = 0.95  # 自定义池使用5%跌幅
+                else:
+                    decline_threshold = 0.97  # 默认3%
+                
+                # 检查过去4天内是否有任意一天跌幅超过阈值
+                ratio1 = prices[-1] / prices[-2]  # 今天/昨天
+                ratio2 = prices[-2] / prices[-3]  # 昨天/前天
+                ratio3 = prices[-3] / prices[-4]  # 前天/大前天
+                
+                # 打印调试信息（帮助排查问题）
+                if debug:
+                    threshold_pct = (1 - decline_threshold) * 100
+                    print(f"  风险过滤检查:")
+                    print(f"    近4日价格序列: {prices[-4:]}")
+                    print(f"    价格比值: 今天/昨天={ratio1:.4f} (跌幅{(1-ratio1)*100:.2f}%), 昨天/前天={ratio2:.4f} (跌幅{(1-ratio2)*100:.2f}%), 前天/大前天={ratio3:.4f} (跌幅{(1-ratio3)*100:.2f}%)")
+                    print(f"    跌幅阈值: {decline_threshold:.4f} ({threshold_pct:.0f}%)")
+                
+                # 检查过滤条件：只要过去4天中任意一天跌幅超过阈值就过滤
+                # ratio1 < decline_threshold：今天跌幅超过阈值
+                # ratio2 < decline_threshold：昨天跌幅超过阈值
+                # ratio3 < decline_threshold：前天跌幅超过阈值
+                threshold_pct = (1 - decline_threshold) * 100
+                should_filter = False
+                filter_reason = ""
+                
+                if ratio1 < decline_threshold:
+                    should_filter = True
+                    today_decline = (1 - ratio1) * 100
+                    filter_reason = f"今日跌幅{today_decline:.2f}%超过{threshold_pct:.0f}%阈值"
+                elif ratio2 < decline_threshold:
+                    should_filter = True
+                    yesterday_decline = (1 - ratio2) * 100
+                    filter_reason = f"昨日跌幅{yesterday_decline:.2f}%超过{threshold_pct:.0f}%阈值"
+                elif ratio3 < decline_threshold:
+                    should_filter = True
+                    day_before_decline = (1 - ratio3) * 100
+                    filter_reason = f"前日跌幅{day_before_decline:.2f}%超过{threshold_pct:.0f}%阈值"
+                
+                if should_filter:
+                    print(f"⚠️ {name}({symbol}) 风险过滤: {filter_reason}，该标的被过滤")
+                    print(f"   价格序列(最近4天): {prices[-4:]}")
+                    print(f"   价格比值: 今天/昨天={ratio1:.4f} (跌幅{(1-ratio1)*100:.2f}%), 昨天/前天={ratio2:.4f} (跌幅{(1-ratio2)*100:.2f}%), 前天/大前天={ratio3:.4f} (跌幅{(1-ratio3)*100:.2f}%)")
                     continue
+                elif debug:
+                    # 即使没有触发过滤，也打印信息（仅debug模式）
+                    print(f"  ✅ {name}({symbol}) 通过风险过滤检查")
             
             # 指标计算
             ma20 = np.mean(prices[-STRATEGY_CONF["ma_filter_days"]:])
@@ -896,7 +1212,10 @@ def run_strategy(pool_name="full", debug=False):
                 if debug:
                     print(f"\n动量计算:")
                     print(f"  使用最近{STRATEGY_CONF['m_days']}天的价格计算动量")
-                score, r2, annualized_return = calculate_momentum(momentum_prices, debug=debug, symbol=symbol)
+                
+                # 传递加权配置参数
+                use_weighted = STRATEGY_CONF.get("use_weighted", True)
+                score, r2, annualized_return = calculate_momentum(momentum_prices, debug=debug, symbol=symbol, use_weighted=use_weighted)
                 if score > 0: positive_count += 1
             elif debug:
                 if not is_up:
@@ -943,6 +1262,75 @@ def run_strategy(pool_name="full", debug=False):
             if loss_ratio <= STRATEGY_CONF["stop_loss_threshold"]:
                 stop_loss_triggered = True
                 print(f"🛑 【硬止损触发】当前持仓从入场价 {entry_price:.3f} 下跌至 {current_holding_price:.3f}，跌幅 {loss_ratio:.2%}，超过 {STRATEGY_CONF['stop_loss_threshold']:.2%} 阈值！")
+    
+    # 3.5. 检查持仓ETF的跌幅（如果当前有持仓，任意一天跌幅超过阈值就清仓）
+    decline_sell_triggered = False
+    if CURRENT_HOLDING and not stop_loss_triggered:
+        # 根据pool参数设置跌幅阈值
+        if pool_name == "core":
+            decline_threshold = 0.97  # 3%跌幅
+        elif pool_name == "full":
+            decline_threshold = 0.95  # 5%跌幅
+        elif pool_name == "custom":
+            decline_threshold = 0.95  # 自定义池使用5%跌幅
+        else:
+            decline_threshold = 0.97  # 默认3%
+        
+        # 获取持仓ETF的历史数据
+        current_name = etf_pool.get(CURRENT_HOLDING, current_holding.get("name", CURRENT_HOLDING))
+        try:
+            hist_full = fetch_with_retry(CURRENT_HOLDING, current_name, max_retries=5, source=source)
+            if not hist_full.empty:
+                hist = hist_full.tail(40)  # 取最近40天
+                
+                # 获取当前价格
+                current_price = None
+                if df_spot is not None:
+                    spot_row = df_spot[df_spot['代码'] == CURRENT_HOLDING]
+                    if not spot_row.empty:
+                        current_price = spot_row['最新价'].values[0]
+                
+                if current_price is None:
+                    if not hist.empty:
+                        current_price = hist['收盘'].iloc[-1]
+                
+                if current_price is not None and len(hist) >= 4:
+                    # 拼接价格序列
+                    # 保留所有历史收盘价（包括昨天的），然后追加今天的价格
+                    hist_closes = hist['收盘'].values  # 保留所有历史收盘价，包括昨天的
+                    prices = np.append(hist_closes, current_price)  # 追加今天的价格
+                    
+                    # 检查跌幅清仓条件：只要过去4天中任意一天跌幅超过阈值就清仓
+                    if len(prices) >= 4:
+                        ratio1 = prices[-1] / prices[-2]  # 今天/昨天
+                        ratio2 = prices[-2] / prices[-3]  # 昨天/前天
+                        ratio3 = prices[-3] / prices[-4]  # 前天/大前天
+                        
+                        threshold_pct = (1 - decline_threshold) * 100
+                        should_sell = False
+                        sell_reason = ""
+                        
+                        # 只要任意一天跌幅超过阈值就清仓
+                        if ratio1 < decline_threshold:
+                            should_sell = True
+                            today_decline = (1 - ratio1) * 100
+                            sell_reason = f"今日跌幅{today_decline:.2f}%超过{threshold_pct:.0f}%阈值"
+                        elif ratio2 < decline_threshold:
+                            should_sell = True
+                            yesterday_decline = (1 - ratio2) * 100
+                            sell_reason = f"昨日跌幅{yesterday_decline:.2f}%超过{threshold_pct:.0f}%阈值"
+                        elif ratio3 < decline_threshold:
+                            should_sell = True
+                            day_before_decline = (1 - ratio3) * 100
+                            sell_reason = f"前日跌幅{day_before_decline:.2f}%超过{threshold_pct:.0f}%阈值"
+                        
+                        if should_sell:
+                            decline_sell_triggered = True
+                            print(f"🛑 【跌幅清仓触发】当前持仓 {current_name}({CURRENT_HOLDING}) {sell_reason}！")
+                            print(f"   价格序列(最近4天): {prices[-4:]}")
+                            print(f"   价格比值: 今天/昨天={ratio1:.4f} (跌幅{(1-ratio1)*100:.2f}%), 昨天/前天={ratio2:.4f} (跌幅{(1-ratio2)*100:.2f}%), 前天/大前天={ratio3:.4f} (跌幅{(1-ratio3)*100:.2f}%)")
+        except Exception as e:
+            print(f"⚠️ 检查持仓跌幅时出错: {e}")
 
     # 4. 打印分析表格
     print(df_res.to_string(index=False))
@@ -1007,6 +1395,49 @@ def run_strategy(pool_name="full", debug=False):
                 "price": sell_price,
                 "quantity": entry_quantity,
                 "reason": "硬止损触发"
+            })
+        
+        # 清空持仓
+        holding_data["current_holding"] = {
+            "code": None,
+            "name": None,
+            "quantity": 0,
+            "entry_price": None,
+            "entry_date": None,
+            "entry_time": None
+        }
+        holding_data["last_update_date"] = today
+        save_holding(holding_data)
+    
+    elif decline_sell_triggered:
+        # 跌幅清仓（任意一天跌幅超过阈值）
+        current_name = etf_pool.get(CURRENT_HOLDING, current_holding.get("name", CURRENT_HOLDING))
+        today = datetime.now().strftime("%Y-%m-%d")
+        # 根据pool参数计算阈值百分比
+        if pool_name == "core":
+            threshold_pct = (1 - 0.97) * 100  # 3%
+        elif pool_name == "full":
+            threshold_pct = (1 - 0.95) * 100  # 5%
+        elif pool_name == "custom":
+            threshold_pct = (1 - 0.95) * 100  # 5%
+        else:
+            threshold_pct = (1 - 0.97) * 100  # 默认3%
+        print(f"🛑 跌幅清仓指令：【立即清仓】(在 {STRATEGY_CONF['sell_time']} 卖出 {current_name}({CURRENT_HOLDING})，数量: {entry_quantity})")
+        
+        # 记录交易
+        sell_price = get_price_from_spot(df_spot, CURRENT_HOLDING, entry_price)
+        if sell_price is None:
+            print(f"⚠️ 警告：无法获取 {current_name}({CURRENT_HOLDING}) 的卖出价格，跳过交易记录")
+        else:
+            holding_data["trade_history"].append({
+                "date": today,
+                "time": STRATEGY_CONF["sell_time"],
+                "action": "卖出",
+                "code": CURRENT_HOLDING,
+                "name": current_name,
+                "price": sell_price,
+                "quantity": entry_quantity,
+                "reason": f"跌幅超过{threshold_pct:.0f}%"
             })
         
         # 清空持仓
@@ -1094,87 +1525,8 @@ def run_strategy(pool_name="full", debug=False):
             print("⚪ 信号提示：目前无合适入场标的。指令：【继续观望】")
             
     else:
-        # 正常轮动逻辑
-        if CURRENT_HOLDING == top_code:
-            # 检查是否需要调整仓位（波动率控仓）
-            current_holding_price = get_price_from_spot(df_spot, CURRENT_HOLDING, entry_price)
-            if current_holding_price is not None:
-                if entry_price:
-                    pnl_ratio = (current_holding_price / entry_price) - 1
-                    pnl_amount = (current_holding_price - entry_price) * entry_quantity
-                    print(f"💎 策略保持：当前持仓 {etf_pool.get(top_code, top_code)} 排名第一。")
-                    print(f"   📊 持仓盈亏: {pnl_ratio:.2%} | 盈亏金额: {pnl_amount:.2f}元")
-                    
-                    # 波动率控仓提示
-                    if top_volatility > STRATEGY_CONF["volatility_threshold"]:
-                        print(f"   ⚠️ 波动率警告: {top_volatility:.2%} > {STRATEGY_CONF['volatility_threshold']:.2%}，建议仓位减半至 {suggested_quantity} 份")
-                    else:
-                        print(f"   ✅ 波动率正常: {top_volatility:.2%}，建议保持当前仓位 {entry_quantity} 份")
-                else:
-                    print(f"💎 策略保持：当前持仓 {etf_pool.get(top_code, top_code)} 排名第一。指令：【坚定持有】")
-        else:
-            today = datetime.now().strftime("%Y-%m-%d")
-            if CURRENT_HOLDING:
-                current_name = etf_pool.get(CURRENT_HOLDING, current_holding.get("name", CURRENT_HOLDING))
-                current_price = get_price_from_spot(df_spot, CURRENT_HOLDING, entry_price)
-                
-                if current_price is None:
-                    print(f"⚠️ 警告：无法获取 {current_name}({CURRENT_HOLDING}) 的卖出价格，使用入场价 {entry_price:.3f} 估算")
-                    current_price = entry_price if entry_price else 0
-                
-                # 计算卖出盈亏
-                if entry_price:
-                    sell_pnl = (current_price / entry_price - 1) * entry_quantity * entry_price
-                    print(f"🔄 调仓动作：")
-                    print(f"   卖出: {current_name}({CURRENT_HOLDING}) 在 {STRATEGY_CONF['sell_time']}，价格: {current_price:.3f}，数量: {entry_quantity}")
-                    if entry_price:
-                        print(f"   卖出盈亏: {(current_price/entry_price-1):.2%} | 盈亏金额: {sell_pnl:.2f}元")
-                
-                # 记录卖出交易
-                holding_data["trade_history"].append({
-                    "date": today,
-                    "time": STRATEGY_CONF["sell_time"],
-                    "action": "卖出",
-                    "code": CURRENT_HOLDING,
-                    "name": current_name,
-                    "price": current_price,
-                    "quantity": entry_quantity,
-                    "reason": "轮动调仓"
-                })
-            else:
-                print(f"🛒 开仓信号：")
-            
-            # 买入新标的
-            top_price = top_target['价格']
-            vol_warning = ""
-            if top_volatility > STRATEGY_CONF["volatility_threshold"]:
-                vol_warning = f" | ⚠️ 波动率 {top_volatility:.2%} 超过阈值，仓位减半至 {suggested_quantity} 份"
-            
-            print(f"   买入: {top_target['名称']}({top_code}) 在 {STRATEGY_CONF['buy_time']}，价格: {top_price:.3f}，数量: {suggested_quantity}{vol_warning}")
-            
-            # 记录买入交易并更新持仓
-            holding_data["trade_history"].append({
-                "date": today,
-                "time": STRATEGY_CONF["buy_time"],
-                "action": "买入",
-                "code": top_code,
-                "name": top_target['名称'],
-                "price": top_price,
-                "quantity": suggested_quantity,
-                "reason": "轮动调仓" if CURRENT_HOLDING else "开仓"
-            })
-            
-            holding_data["current_holding"] = {
-                "code": top_code,
-                "name": top_target['名称'],
-                "quantity": suggested_quantity,
-                "entry_price": top_price,
-                "entry_date": today,
-                "entry_time": STRATEGY_CONF["buy_time"]
-            }
-            holding_data["last_update_date"] = today
-            holding_data["last_update_date"] = today
-            save_holding(holding_data)
+        # 正常情况：不执行任何操作（不开仓，不换仓，不显示持仓信息）
+        pass
 
     # 6. 记录每日状态（在策略运行结束前）
     # 获取当前持仓的最新价格和得分
@@ -1209,7 +1561,7 @@ def run_strategy(pool_name="full", debug=False):
         }
     
     # 先补全历史
-    holding_data = backfill_daily_log(holding_data, pool_name)
+    holding_data = backfill_daily_log(holding_data, pool_name, source=source)
     # 再更新今日
     holding_data = record_daily_status(holding_data, record_price, record_score, record_r2, record_annualized_return, pool_scores_dict)
     save_holding(holding_data)
@@ -1223,10 +1575,18 @@ def run_strategy(pool_name="full", debug=False):
 
     print("="*60)
 
-def debug_historical_date(target_date_str, pool_name="core"):
-    """调试指定历史日期的得分计算"""
+def debug_historical_date(target_date_str, pool_name="core", source="tx"):
+    """
+    调试指定历史日期的得分计算
+    
+    Args:
+        target_date_str: 目标日期字符串，格式 'YYYY-MM-DD'
+        pool_name: ETF池名称，'full'、'core' 或 'custom'
+        source: 数据源选择，'tx' 表示腾讯（默认），'em' 表示东财
+    """
     print(f"\n{'='*60}")
     print(f"🔍 调试历史日期: {target_date_str}")
+    print(f"📡 数据源: 【{source.upper()}】 ({'腾讯' if source == 'tx' else '东财'})")
     print(f"{'='*60}\n")
     
     target_date = datetime.strptime(target_date_str, "%Y-%m-%d")
@@ -1244,7 +1604,7 @@ def debug_historical_date(target_date_str, pool_name="core"):
         
         try:
             # 获取历史数据 - 使用带重试机制的抓取函数
-            hist = fetch_with_retry(symbol, name, max_retries=5)
+            hist = fetch_with_retry(symbol, name, max_retries=5, source=source)
             if hist.empty:
                 print(f"❌ 无法获取历史数据")
                 continue
@@ -1271,16 +1631,48 @@ def debug_historical_date(target_date_str, pool_name="core"):
             print(f"目标日期收盘价: {close_price}")
             print(f"价格序列总长度: {len(prices)}")
             
-            # 风险过滤：近3日跌幅过大
+            # 风险过滤：近4日任意一天跌幅过大（根据pool参数设置不同阈值）
             if len(prices) >= 4:
-                min_ratio = min(prices[-1]/prices[-2], prices[-2]/prices[-3], prices[-3]/prices[-4])
+                # 根据pool参数设置跌幅阈值
+                if pool_name == "core":
+                    decline_threshold = 0.97  # 3%跌幅
+                elif pool_name == "full":
+                    decline_threshold = 0.95  # 5%跌幅
+                elif pool_name == "custom":
+                    decline_threshold = 0.95  # 自定义池使用5%跌幅
+                else:
+                    decline_threshold = 0.97  # 默认3%
+                
+                # 检查过去4天内是否有任意一天跌幅超过阈值
+                ratio1 = prices[-1] / prices[-2]  # 今天/昨天
+                ratio2 = prices[-2] / prices[-3]  # 昨天/前天
+                ratio3 = prices[-3] / prices[-4]  # 前天/大前天
+                
+                # 检查是否有任意一天跌幅超过阈值
+                should_filter = False
+                filter_reason = ""
+                threshold_pct = (1 - decline_threshold) * 100
+                
+                if ratio1 < decline_threshold:
+                    should_filter = True
+                    today_decline = (1 - ratio1) * 100
+                    filter_reason = f"今日跌幅{today_decline:.2f}%超过{threshold_pct:.0f}%阈值"
+                elif ratio2 < decline_threshold:
+                    should_filter = True
+                    yesterday_decline = (1 - ratio2) * 100
+                    filter_reason = f"昨日跌幅{yesterday_decline:.2f}%超过{threshold_pct:.0f}%阈值"
+                elif ratio3 < decline_threshold:
+                    should_filter = True
+                    day_before_decline = (1 - ratio3) * 100
+                    filter_reason = f"前日跌幅{day_before_decline:.2f}%超过{threshold_pct:.0f}%阈值"
+                
                 print(f"\n风险过滤检查:")
-                print(f"  近3日价格比值: {prices[-1]:.4f}/{prices[-2]:.4f} = {prices[-1]/prices[-2]:.4f}")
-                print(f"  近2日价格比值: {prices[-2]:.4f}/{prices[-3]:.4f} = {prices[-2]/prices[-3]:.4f}")
-                print(f"  近1日价格比值: {prices[-3]:.4f}/{prices[-4]:.4f} = {prices[-3]/prices[-4]:.4f}")
-                print(f"  最小比值: {min_ratio:.4f}")
-                if min_ratio < 0.95:
-                    print(f"  ⚠️ 风险过滤: 近3日中有连续两日跌幅超过5%，该标的被过滤")
+                print(f"  近4日价格序列: {prices[-4:]}")
+                print(f"  价格比值: 今天/昨天={ratio1:.4f} (跌幅{(1-ratio1)*100:.2f}%), 昨天/前天={ratio2:.4f} (跌幅{(1-ratio2)*100:.2f}%), 前天/大前天={ratio3:.4f} (跌幅{(1-ratio3)*100:.2f}%)")
+                print(f"  跌幅阈值: {decline_threshold:.4f} ({threshold_pct:.0f}%)")
+                
+                if should_filter:
+                    print(f"  ⚠️ 风险过滤: {filter_reason}，该标的被过滤")
                     print(f"\n✅ 最终结果: {name}({symbol}) 在 {target_date_str} 的得分 = N/A (风险过滤)")
                     continue
             
@@ -1307,7 +1699,9 @@ def debug_historical_date(target_date_str, pool_name="core"):
                 momentum_prices = prices[-STRATEGY_CONF["m_days"]:]
                 print(f"\n动量计算:")
                 print(f"  使用最近{STRATEGY_CONF['m_days']}天的价格计算动量")
-                score, r2, annualized_return = calculate_momentum(momentum_prices, debug=True, symbol=symbol)
+                # 传递加权配置参数
+                use_weighted = STRATEGY_CONF.get("use_weighted", True)
+                score, r2, annualized_return = calculate_momentum(momentum_prices, debug=True, symbol=symbol, use_weighted=use_weighted)
             else:
                 if not is_up:
                     print(f"\n❌ 未通过均线过滤: 价格 {close_price:.4f} <= MA20 {ma20:.4f}")
@@ -1326,12 +1720,14 @@ def debug_historical_date(target_date_str, pool_name="core"):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='ETF轮动策略')
-    parser.add_argument('--pool', type=str, default='core', help='选择ETF池: full (全量), core (核心)')
+    parser.add_argument('--pool', type=str, default='core', help='选择ETF池: full (全量), core (核心), custom (自定义)')
     parser.add_argument('--debug', action='store_true', help='开启调试模式，显示详细计算过程')
+    parser.add_argument('--source', type=str, default='tx', choices=['tx', 'em'], 
+                       help='数据源选择: tx (腾讯，默认), em (东财)')
     parser.add_argument('--debug-date', type=str, help='调试指定历史日期，格式: YYYY-MM-DD，例如: 2026-01-15')
     args = parser.parse_args()
     
     if args.debug_date:
-        debug_historical_date(args.debug_date, args.pool)
+        debug_historical_date(args.debug_date, args.pool, source=args.source)
     else:
-        run_strategy(args.pool, debug=args.debug)
+        run_strategy(args.pool, debug=args.debug, source=args.source)
