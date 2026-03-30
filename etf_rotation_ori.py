@@ -522,7 +522,8 @@ def calculate_etf_score_at_date(symbol, target_date, source="tx", pool_name="cor
                 }
         
         # 计算指标
-        ma20 = np.mean(prices[-STRATEGY_CONF["ma_filter_days"]:])
+        # 聚宽逻辑：MA20使用昨日及之前的20日均线（不含当日）
+        ma20 = np.mean(prices[-(STRATEGY_CONF["ma_filter_days"] + 1):-1])
         is_up = close_price > ma20
         
         # 计算得分
@@ -530,7 +531,8 @@ def calculate_etf_score_at_date(symbol, target_date, source="tx", pool_name="cor
         r2 = 0
         annualized_return = 0
         if is_up:
-            momentum_prices = prices[-STRATEGY_CONF["m_days"]:]
+            # 聚宽逻辑：动量计算使用25天历史+1天当日=26天数据
+            momentum_prices = prices[-(STRATEGY_CONF["m_days"] + 1):]
             # 传递加权配置参数
             use_weighted = STRATEGY_CONF.get("use_weighted", True)
             score, r2, annualized_return = calculate_momentum(momentum_prices, use_weighted=use_weighted)
@@ -1185,7 +1187,8 @@ def run_strategy(pool_name="full", debug=False, source="tx"):
                     print(f"  ✅ {name}({symbol}) 通过风险过滤检查")
             
             # 指标计算
-            ma20 = np.mean(prices[-STRATEGY_CONF["ma_filter_days"]:])
+            # 聚宽逻辑：MA20使用昨日及之前的20日均线（不含当日）
+            ma20 = np.mean(prices[-(STRATEGY_CONF["ma_filter_days"] + 1):-1])
             short_ret = (prices[-1] / prices[-5]) - 1
             
             if debug:
@@ -1208,10 +1211,11 @@ def run_strategy(pool_name="full", debug=False, source="tx"):
             r2 = 0
             annualized_return = 0
             if is_up and is_not_crash:
-                momentum_prices = prices[-STRATEGY_CONF["m_days"]:]
+                # 聚宽逻辑：动量计算使用25天历史+1天当日=26天数据
+                momentum_prices = prices[-(STRATEGY_CONF["m_days"] + 1):]
                 if debug:
                     print(f"\n动量计算:")
-                    print(f"  使用最近{STRATEGY_CONF['m_days']}天的价格计算动量")
+                    print(f"  使用最近{STRATEGY_CONF['m_days']}天历史+1天当日=26天数据计算动量")
                 
                 # 传递加权配置参数
                 use_weighted = STRATEGY_CONF.get("use_weighted", True)
@@ -1677,7 +1681,8 @@ def debug_historical_date(target_date_str, pool_name="core", source="tx"):
                     continue
             
             # 计算指标
-            ma20 = np.mean(prices[-STRATEGY_CONF["ma_filter_days"]:])
+            # 聚宽逻辑：MA20使用昨日及之前的20日均线（不含当日）
+            ma20 = np.mean(prices[-(STRATEGY_CONF["ma_filter_days"] + 1):-1])
             short_ret = (prices[-1] / prices[-5]) - 1 if len(prices) >= 5 else 0
             
             print(f"\n指标计算:")
@@ -1696,9 +1701,10 @@ def debug_historical_date(target_date_str, pool_name="core", source="tx"):
             r2 = 0
             annualized_return = 0
             if is_up and is_not_crash:
-                momentum_prices = prices[-STRATEGY_CONF["m_days"]:]
+                # 聚宽逻辑：动量计算使用25天历史+1天当日=26天数据
+                momentum_prices = prices[-(STRATEGY_CONF["m_days"] + 1):]
                 print(f"\n动量计算:")
-                print(f"  使用最近{STRATEGY_CONF['m_days']}天的价格计算动量")
+                print(f"  使用最近{STRATEGY_CONF['m_days']}天历史+1天当日=26天数据计算动量")
                 # 传递加权配置参数
                 use_weighted = STRATEGY_CONF.get("use_weighted", True)
                 score, r2, annualized_return = calculate_momentum(momentum_prices, debug=True, symbol=symbol, use_weighted=use_weighted)

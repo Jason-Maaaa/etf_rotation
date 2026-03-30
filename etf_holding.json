@@ -19,1120 +19,20 @@
       "reason": "初始持仓"
     },
     {
-      "date": "2026-01-20",
+      "date": "2026-02-06",
       "time": "14:50",
       "action": "卖出",
       "code": "159915",
       "name": "创业板ETF",
-      "price": 3.352,
+      "price": 3.234,
       "quantity": 31900,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-20",
-      "time": "14:51",
-      "action": "买入",
-      "code": "518880",
-      "name": "黄金ETF",
-      "price": 10.082,
-      "quantity": 10605,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-21",
-      "time": "14:50",
-      "action": "卖出",
-      "code": "518880",
-      "name": "黄金ETF",
-      "price": 10.344,
-      "quantity": 10605,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-21",
-      "time": "14:51",
-      "action": "买入",
-      "code": "159915",
-      "name": "创业板ETF",
-      "price": 3.305,
-      "quantity": 33191,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-21",
-      "time": "14:50",
-      "action": "卖出",
-      "code": "159915",
-      "name": "创业板ETF",
-      "price": 3.297,
-      "quantity": 33191,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-21",
-      "time": "14:51",
-      "action": "买入",
-      "code": "518880",
-      "name": "黄金ETF",
-      "price": 10.442,
-      "quantity": 10479,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-27",
-      "time": "14:50",
-      "action": "卖出",
-      "code": "518880",
-      "name": "黄金ETF",
-      "price": 10.883,
-      "quantity": 10479,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-27",
-      "time": "14:51",
-      "action": "买入",
-      "code": "512710",
-      "name": "军工龙头",
-      "price": 0.872,
-      "quantity": 65391,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-27",
-      "time": "14:50",
-      "action": "卖出",
-      "code": "512710",
-      "name": "军工龙头",
-      "price": 0.888,
-      "quantity": 65391,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-27",
-      "time": "14:51",
-      "action": "买入",
-      "code": "512480",
-      "name": "半导体",
-      "price": 1.741,
-      "quantity": 16676,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-28",
-      "time": "14:50",
-      "action": "卖出",
-      "code": "512480",
-      "name": "半导体",
-      "price": 1.764,
-      "quantity": 16676,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-28",
-      "time": "14:51",
-      "action": "买入",
-      "code": "518880",
-      "name": "黄金ETF",
-      "price": 11.28,
-      "quantity": 2607,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-29",
-      "time": "14:50",
-      "action": "卖出",
-      "code": "518880",
-      "name": "黄金ETF",
-      "price": 11.864,
-      "quantity": 2607,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-29",
-      "time": "14:51",
-      "action": "买入",
-      "code": "510410",
-      "name": "资源ETF",
-      "price": 2.244,
-      "quantity": 13783,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-30",
-      "time": "14:50",
-      "action": "卖出",
-      "code": "510410",
-      "name": "资源ETF",
-      "price": 2.153,
-      "quantity": 13783,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-30",
-      "time": "14:51",
-      "action": "买入",
-      "code": "518880",
-      "name": "黄金ETF",
-      "price": 11.316,
-      "quantity": 2622,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-30",
-      "time": "14:50",
-      "action": "卖出",
-      "code": "518880",
-      "name": "黄金ETF",
-      "price": 10.984,
-      "quantity": 2622,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-30",
-      "time": "14:51",
-      "action": "买入",
-      "code": "510410",
-      "name": "资源ETF",
-      "price": 2.125,
-      "quantity": 6776,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-30",
-      "time": "14:50",
-      "action": "卖出",
-      "code": "510410",
-      "name": "资源ETF",
-      "price": 2.16,
-      "quantity": 6776,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-30",
-      "time": "14:51",
-      "action": "买入",
-      "code": "518880",
-      "name": "黄金ETF",
-      "price": 11.178,
-      "quantity": 654,
-      "reason": "轮动调仓"
-    },
-    {
-      "date": "2026-01-30",
-      "time": "14:50",
-      "action": "卖出",
-      "code": "518880",
-      "name": "黄金ETF",
-      "price": 11.115,
-      "quantity": 654,
-      "reason": "跌幅超过3%"
-    },
-    {
-      "date": "2026-01-30",
-      "time": "14:51",
-      "action": "买入",
-      "code": "501018",
-      "name": "南方原油",
-      "price": 1.552,
-      "quantity": 15950,
-      "reason": "开仓"
-    },
-    {
-      "date": "2026-02-02",
-      "time": "14:50",
-      "action": "卖出",
-      "code": "501018",
-      "name": "南方原油",
-      "price": 1.397,
-      "quantity": 15950,
-      "reason": "硬止损触发"
+      "reason": "市场情绪过低"
     }
   ],
   "daily_log": [
     {
-      "date": "2026-01-15",
-      "time": "14:51:00",
-      "code": "159915",
-      "name": "创业板ETF",
-      "quantity": 31900,
-      "price": 9.867,
-      "market_value": 314757.3,
-      "unrealized_pnl": 207828.5,
-      "pnl_ratio": 1.9436,
-      "score": 0.9137,
-      "r2": 0.7664,
-      "annualized_return": 1.1922,
-      "pool_scores": {
-        "518880": {
-          "score": 0.6507,
-          "r2": 0.6895,
-          "annualized_return": 0.9438
-        },
-        "513100": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159915": {
-          "score": 0.9137,
-          "r2": 0.7664,
-          "annualized_return": 1.1922
-        },
-        "510300": {
-          "score": 0.7112,
-          "r2": 0.8417,
-          "annualized_return": 0.845
-        }
-      }
-    },
-    {
-      "date": "2026-01-16",
-      "time": "14:51:00",
-      "code": "159915",
-      "name": "创业板ETF",
-      "quantity": 31900,
-      "price": 9.857,
-      "market_value": 314438.3,
-      "unrealized_pnl": 207509.5,
-      "pnl_ratio": 1.9406,
-      "score": 1.1192,
-      "r2": 0.8352,
-      "annualized_return": 1.34,
-      "pool_scores": {
-        "518880": {
-          "score": 0.6223,
-          "r2": 0.6837,
-          "annualized_return": 0.9101
-        },
-        "513100": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159915": {
-          "score": 1.1192,
-          "r2": 0.8352,
-          "annualized_return": 1.34
-        },
-        "510300": {
-          "score": 0.7118,
-          "r2": 0.842,
-          "annualized_return": 0.8454
-        }
-      }
-    },
-    {
-      "date": "2026-01-19",
-      "time": "14:51:00",
-      "code": "159915",
-      "name": "创业板ETF",
-      "quantity": 31900,
-      "price": 10.006,
-      "market_value": 319191.4,
-      "unrealized_pnl": 212262.6,
-      "pnl_ratio": 1.9851,
-      "score": 1.1209,
-      "r2": 0.8357,
-      "annualized_return": 1.3412,
-      "pool_scores": {
-        "518880": {
-          "score": 0.63,
-          "r2": 0.6839,
-          "annualized_return": 0.9213
-        },
-        "513100": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159915": {
-          "score": 1.1209,
-          "r2": 0.8357,
-          "annualized_return": 1.3412
-        },
-        "510300": {
-          "score": 0.6525,
-          "r2": 0.8139,
-          "annualized_return": 0.8017
-        }
-      }
-    },
-    {
-      "date": "2026-01-20",
-      "time": "19:29:11",
-      "code": "518880",
-      "name": "黄金ETF",
-      "quantity": 10605,
-      "price": 10.082,
-      "market_value": 106919.61,
-      "unrealized_pnl": 0.0,
-      "pnl_ratio": 0.0,
-      "score": 0.6867,
-      "r2": 0.6909,
-      "annualized_return": 0.9939,
-      "pool_scores": {
-        "518880": {
-          "score": 0.6867,
-          "r2": 0.6909,
-          "annualized_return": 0.9939
-        },
-        "513100": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159915": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "510300": {
-          "score": 0.589,
-          "r2": 0.777,
-          "annualized_return": 0.7581
-        }
-      }
-    },
-    {
-      "date": "2026-01-21",
-      "time": "15:02:44",
-      "code": "518880",
-      "name": "黄金ETF",
-      "quantity": 10479,
-      "price": 10.377,
-      "market_value": 108740.58,
-      "unrealized_pnl": -681.13,
-      "pnl_ratio": -0.0062,
-      "score": 0.8722,
-      "r2": 0.6988,
-      "annualized_return": 1.2482,
-      "pool_scores": {
-        "518880": {
-          "score": 0.8722,
-          "r2": 0.6988,
-          "annualized_return": 1.2482
-        },
-        "513100": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159915": {
-          "score": 0.8436,
-          "r2": 0.7372,
-          "annualized_return": 1.1443
-        },
-        "510300": {
-          "score": 0.4959,
-          "r2": 0.7244,
-          "annualized_return": 0.6846
-        }
-      }
-    },
-    {
-      "date": "2026-01-22",
-      "time": "14:50:37",
-      "code": "518880",
-      "name": "黄金ETF",
-      "quantity": 10479,
-      "price": 10.442,
-      "market_value": 109421.72,
-      "unrealized_pnl": 0.0,
-      "pnl_ratio": 0.0,
-      "score": 0.9795,
-      "r2": 0.7054,
-      "annualized_return": 1.3886,
-      "pool_scores": {
-        "518880": {
-          "score": 0.9795,
-          "r2": 0.7054,
-          "annualized_return": 1.3886
-        },
-        "513100": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159915": {
-          "score": 0.6522,
-          "r2": 0.6941,
-          "annualized_return": 0.9397
-        },
-        "510300": {
-          "score": 0.3657,
-          "r2": 0.6576,
-          "annualized_return": 0.5561
-        }
-      }
-    },
-    {
-      "date": "2026-01-23",
-      "time": "14:31:01",
-      "code": "518880",
-      "name": "黄金ETF",
-      "quantity": 10479,
-      "price": 10.614,
-      "market_value": 111224.11,
-      "unrealized_pnl": 1802.39,
-      "pnl_ratio": 0.0165,
-      "score": 1.198,
-      "r2": 0.7064,
-      "annualized_return": 1.6959,
-      "pool_scores": {
-        "518880": {
-          "score": 1.198,
-          "r2": 0.7064,
-          "annualized_return": 1.6959
-        },
-        "513100": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159915": {
-          "score": 0.6221,
-          "r2": 0.6817,
-          "annualized_return": 0.9127
-        },
-        "510300": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        }
-      }
-    },
-    {
-      "date": "2026-01-26",
-      "time": "14:51:00",
-      "code": "518880",
-      "name": "黄金ETF",
-      "quantity": 10479,
-      "price": 1.698,
-      "market_value": 17793.34,
-      "unrealized_pnl": -91628.38,
-      "pnl_ratio": -0.8374,
-      "score": 1.5173,
-      "r2": 0.6978,
-      "annualized_return": 2.1746,
-      "pool_scores": {
-        "513100": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0,
-          "risk_filtered": false
-        },
-        "159509": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0,
-          "risk_filtered": false
-        },
-        "513520": {
-          "score": 0.313,
-          "r2": 0.5899,
-          "annualized_return": 0.5305,
-          "risk_filtered": false
-        },
-        "513030": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0,
-          "risk_filtered": false
-        },
-        "518880": {
-          "score": 1.5173,
-          "r2": 0.6978,
-          "annualized_return": 2.1746,
-          "risk_filtered": false
-        },
-        "159980": {
-          "score": 1.7501,
-          "r2": 0.7637,
-          "annualized_return": 2.2916,
-          "risk_filtered": false
-        },
-        "159985": {
-          "score": 0.0122,
-          "r2": 0.1563,
-          "annualized_return": 0.078,
-          "risk_filtered": false
-        },
-        "159981": {
-          "score": 0.3599,
-          "r2": 0.522,
-          "annualized_return": 0.6895,
-          "risk_filtered": false
-        },
-        "501018": {
-          "score": 1.2001,
-          "r2": 0.6806,
-          "annualized_return": 1.7633,
-          "risk_filtered": false
-        },
-        "511090": {
-          "score": 0,
-          "r2": 0.1036,
-          "annualized_return": -0.0768,
-          "risk_filtered": false
-        },
-        "513130": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0,
-          "risk_filtered": false
-        },
-        "513690": {
-          "score": 0.1654,
-          "r2": 0.5669,
-          "annualized_return": 0.2917,
-          "risk_filtered": false
-        },
-        "510180": {
-          "score": 0.5134,
-          "r2": 0.7002,
-          "annualized_return": 0.7332,
-          "risk_filtered": false
-        },
-        "159915": {
-          "score": 0.4609,
-          "r2": 0.6266,
-          "annualized_return": 0.7356,
-          "risk_filtered": false
-        },
-        "510410": {
-          "score": 6.4387,
-          "r2": 0.9578,
-          "annualized_return": 6.7223,
-          "risk_filtered": false
-        },
-        "515650": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0,
-          "risk_filtered": false
-        },
-        "512290": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0,
-          "risk_filtered": false
-        },
-        "588120": {
-          "score": 8.1735,
-          "r2": 0.9151,
-          "annualized_return": 8.9322,
-          "risk_filtered": false
-        },
-        "515070": {
-          "score": 2.2898,
-          "r2": 0.8161,
-          "annualized_return": 2.8058,
-          "risk_filtered": false
-        },
-        "159851": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0,
-          "risk_filtered": false
-        },
-        "159637": {
-          "score": 0.998,
-          "r2": 0.7145,
-          "annualized_return": 1.3968,
-          "risk_filtered": false
-        },
-        "516160": {
-          "score": 1.6899,
-          "r2": 0.863,
-          "annualized_return": 1.9582,
-          "risk_filtered": false
-        },
-        "159550": {
-          "score": 1.6717,
-          "r2": 0.6332,
-          "annualized_return": 2.64,
-          "risk_filtered": false
-        },
-        "512710": {
-          "score": null,
-          "r2": null,
-          "annualized_return": null,
-          "risk_filtered": true
-        },
-        "159692": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0,
-          "risk_filtered": false
-        },
-        "512480": {
-          "score": 8.3144,
-          "r2": 0.9385,
-          "annualized_return": 8.8593,
-          "risk_filtered": false
-        },
-        "515250": {
-          "score": 2.1121,
-          "r2": 0.8011,
-          "annualized_return": 2.6364,
-          "risk_filtered": false
-        },
-        "159378": {
-          "score": 8.1119,
-          "r2": 0.7247,
-          "annualized_return": 11.194,
-          "risk_filtered": false
-        },
-        "516510": {
-          "score": 6.0969,
-          "r2": 0.7455,
-          "annualized_return": 8.1784,
-          "risk_filtered": false
-        },
-        "515050": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0,
-          "risk_filtered": false
-        },
-        "159995": {
-          "score": 6.8157,
-          "r2": 0.9305,
-          "annualized_return": 7.3249,
-          "risk_filtered": false
-        },
-        "515790": {
-          "score": 3.8555,
-          "r2": 0.885,
-          "annualized_return": 4.3564,
-          "risk_filtered": false
-        },
-        "515000": {
-          "score": 1.3733,
-          "r2": 0.8455,
-          "annualized_return": 1.6242,
-          "risk_filtered": false
-        }
-      }
-    },
-    {
-      "date": "2026-01-27",
-      "time": "14:44:49",
-      "code": "512480",
-      "name": "半导体",
-      "quantity": 16676,
-      "price": 1.741,
-      "market_value": 29032.92,
-      "unrealized_pnl": 0.0,
-      "pnl_ratio": 0.0,
-      "score": 7.6064,
-      "r2": 0.9331,
-      "annualized_return": 8.1521,
-      "pool_scores": {
-        "513100": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159509": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "513520": {
-          "score": 0.3324,
-          "r2": 0.6066,
-          "annualized_return": 0.548
-        },
-        "513030": {
-          "score": 0.0762,
-          "r2": 0.2331,
-          "annualized_return": 0.3269
-        },
-        "518880": {
-          "score": 1.8574,
-          "r2": 0.71,
-          "annualized_return": 2.6161
-        },
-        "159980": {
-          "score": 1.5162,
-          "r2": 0.7413,
-          "annualized_return": 2.0454
-        },
-        "159985": {
-          "score": 0.0078,
-          "r2": 0.1199,
-          "annualized_return": 0.0651
-        },
-        "159981": {
-          "score": 0.2919,
-          "r2": 0.4897,
-          "annualized_return": 0.5962
-        },
-        "501018": {
-          "score": 1.6055,
-          "r2": 0.6873,
-          "annualized_return": 2.3361
-        },
-        "511090": {
-          "score": 0,
-          "r2": 0.0435,
-          "annualized_return": -0.0499
-        },
-        "513130": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "513690": {
-          "score": 0.2298,
-          "r2": 0.6352,
-          "annualized_return": 0.3618
-        },
-        "510180": {
-          "score": 0.4103,
-          "r2": 0.6468,
-          "annualized_return": 0.6343
-        },
-        "159915": {
-          "score": 0.3429,
-          "r2": 0.5852,
-          "annualized_return": 0.5859
-        },
-        "510410": {
-          "score": 6.6771,
-          "r2": 0.9581,
-          "annualized_return": 6.9689
-        },
-        "515650": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "512290": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "588120": {
-          "score": 7.4209,
-          "r2": 0.9079,
-          "annualized_return": 8.174
-        },
-        "515070": {
-          "score": 1.9546,
-          "r2": 0.79,
-          "annualized_return": 2.4742
-        },
-        "159851": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159637": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "516160": {
-          "score": 1.5074,
-          "r2": 0.8644,
-          "annualized_return": 1.7438
-        },
-        "159550": {
-          "score": 1.4624,
-          "r2": 0.5993,
-          "annualized_return": 2.4402
-        },
-        "159692": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "512480": {
-          "score": 7.6064,
-          "r2": 0.9331,
-          "annualized_return": 8.1521
-        },
-        "515250": {
-          "score": 1.6265,
-          "r2": 0.7401,
-          "annualized_return": 2.1978
-        },
-        "159378": {
-          "score": 5.9435,
-          "r2": 0.6715,
-          "annualized_return": 8.8508
-        },
-        "516510": {
-          "score": 5.0912,
-          "r2": 0.7104,
-          "annualized_return": 7.1671
-        },
-        "515050": {
-          "score": 0.2586,
-          "r2": 0.5141,
-          "annualized_return": 0.5031
-        },
-        "159995": {
-          "score": 6.2196,
-          "r2": 0.9232,
-          "annualized_return": 6.7368
-        },
-        "515790": {
-          "score": 4.088,
-          "r2": 0.8867,
-          "annualized_return": 4.6103
-        },
-        "515000": {
-          "score": 1.1865,
-          "r2": 0.8345,
-          "annualized_return": 1.4218
-        }
-      }
-    },
-    {
-      "date": "2026-01-28",
-      "time": "19:12:52",
-      "code": "518880",
-      "name": "黄金ETF",
-      "quantity": 2607,
-      "price": 11.28,
-      "market_value": 29406.96,
-      "unrealized_pnl": 0.0,
-      "pnl_ratio": 0.0,
-      "score": 2.616,
-      "r2": 0.7372,
-      "annualized_return": 3.5484,
-      "pool_scores": {
-        "518880": {
-          "score": 2.616,
-          "r2": 0.7372,
-          "annualized_return": 3.5484
-        },
-        "513100": {
-          "score": 0,
-          "r2": 0.6385,
-          "annualized_return": -0.2222
-        },
-        "159915": {
-          "score": 0.2543,
-          "r2": 0.5137,
-          "annualized_return": 0.4951
-        },
-        "510300": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        }
-      }
-    },
-    {
-      "date": "2026-01-29",
-      "time": "10:39:52",
-      "code": "510410",
-      "name": "资源ETF",
-      "quantity": 13783,
-      "price": 2.244,
-      "market_value": 30929.05,
-      "unrealized_pnl": 0.0,
-      "pnl_ratio": 0.0,
-      "score": 7.7441,
-      "r2": 0.9475,
-      "annualized_return": 8.1731,
-      "pool_scores": {
-        "513100": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159509": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "513520": {
-          "score": 0.4325,
-          "r2": 0.6834,
-          "annualized_return": 0.6329
-        },
-        "513030": {
-          "score": 0.062,
-          "r2": 0.2068,
-          "annualized_return": 0.2999
-        },
-        "518880": {
-          "score": 2.8364,
-          "r2": 0.6901,
-          "annualized_return": 4.1103
-        },
-        "159980": {
-          "score": 1.3785,
-          "r2": 0.7298,
-          "annualized_return": 1.8889
-        },
-        "159985": {
-          "score": 0.0157,
-          "r2": 0.1578,
-          "annualized_return": 0.0995
-        },
-        "159981": {
-          "score": 0.3056,
-          "r2": 0.4988,
-          "annualized_return": 0.6126
-        },
-        "501018": {
-          "score": 2.5811,
-          "r2": 0.5669,
-          "annualized_return": 4.5531
-        },
-        "511090": {
-          "score": 0,
-          "r2": 0.0038,
-          "annualized_return": -0.0154
-        },
-        "513130": {
-          "score": 0.1943,
-          "r2": 0.3832,
-          "annualized_return": 0.5071
-        },
-        "513690": {
-          "score": 0.3089,
-          "r2": 0.6067,
-          "annualized_return": 0.5091
-        },
-        "510180": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159915": {
-          "score": 0.2752,
-          "r2": 0.5366,
-          "annualized_return": 0.5129
-        },
-        "510410": {
-          "score": 7.7441,
-          "r2": 0.9475,
-          "annualized_return": 8.1731
-        },
-        "515650": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "512290": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "588120": {
-          "score": 6.7391,
-          "r2": 0.8994,
-          "annualized_return": 7.4932
-        },
-        "515070": {
-          "score": 1.8184,
-          "r2": 0.7765,
-          "annualized_return": 2.3417
-        },
-        "159851": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159637": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "516160": {
-          "score": 1.2659,
-          "r2": 0.8376,
-          "annualized_return": 1.5113
-        },
-        "159550": {
-          "score": 1.4329,
-          "r2": 0.5953,
-          "annualized_return": 2.4069
-        },
-        "159692": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "512480": {
-          "score": 7.0759,
-          "r2": 0.9237,
-          "annualized_return": 7.6603
-        },
-        "515250": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159378": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "516510": {
-          "score": 4.8314,
-          "r2": 0.7022,
-          "annualized_return": 6.8806
-        },
-        "515050": {
-          "score": 0.2286,
-          "r2": 0.4917,
-          "annualized_return": 0.465
-        },
-        "159995": {
-          "score": 5.8547,
-          "r2": 0.9139,
-          "annualized_return": 6.4061
-        },
-        "515790": {
-          "score": 4.1026,
-          "r2": 0.8867,
-          "annualized_return": 4.6266
-        },
-        "515000": {
-          "score": 1.1488,
-          "r2": 0.8275,
-          "annualized_return": 1.3883
-        }
-      }
-    },
-    {
-      "date": "2026-01-30",
-      "time": "11:31:34",
-      "code": "501018",
-      "name": "南方原油",
-      "quantity": 15950,
-      "price": 1.552,
-      "market_value": 24754.4,
-      "unrealized_pnl": 0.0,
-      "pnl_ratio": 0.0,
-      "score": null,
-      "r2": null,
-      "annualized_return": null,
-      "pool_scores": {
-        "512480": {
-          "score": 5.1571,
-          "r2": 0.8547,
-          "annualized_return": 6.0335
-        },
-        "159995": {
-          "score": 4.4896,
-          "r2": 0.8507,
-          "annualized_return": 5.2776
-        }
-      }
-    },
-    {
-      "date": "2026-02-02",
-      "time": "10:34:56",
+      "date": "2026-02-06",
+      "time": "10:28:18",
       "code": null,
       "name": null,
       "quantity": 0,
@@ -1155,136 +55,730 @@
           "annualized_return": 0
         },
         "513520": {
-          "score": 0.463,
-          "r2": 0.6951,
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513030": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "518880": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159980": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159985": {
+          "score": 0.0184,
+          "r2": 0.1793,
+          "annualized_return": 0.1027
+        },
+        "159981": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "501018": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "511090": {
+          "score": 0.1956,
+          "r2": 0.8082,
+          "annualized_return": 0.2421
+        },
+        "513130": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513690": {
+          "score": 0.9987,
+          "r2": 0.7877,
+          "annualized_return": 1.2678
+        },
+        "510180": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "510410": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515650": {
+          "score": 0,
+          "r2": 0.0191,
+          "annualized_return": -0.0299
+        },
+        "512290": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "588120": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515070": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159851": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159637": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "516160": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159550": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512710": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159692": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512480": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515250": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159378": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "516510": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515050": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159995": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515000": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        }
+      }
+    },
+    {
+      "date": "2026-02-24",
+      "time": "10:29:32",
+      "code": null,
+      "name": null,
+      "quantity": 0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": null,
+      "r2": null,
+      "annualized_return": null,
+      "pool_scores": {
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159509": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513520": {
+          "score": 1.5511,
+          "r2": 0.5788,
+          "annualized_return": 2.6799
+        },
+        "513030": {
+          "score": 0,
+          "r2": -0.0151,
+          "annualized_return": 0.0471
+        },
+        "518880": {
+          "score": 0.2476,
+          "r2": 0.2608,
+          "annualized_return": 0.9496
+        },
+        "159980": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159985": {
+          "score": 0.0839,
+          "r2": 0.4727,
+          "annualized_return": 0.1774
+        },
+        "159981": {
+          "score": 0.0,
+          "r2": 0.0006,
+          "annualized_return": 0.0006
+        },
+        "501018": {
+          "score": 3.0541,
+          "r2": 0.5185,
+          "annualized_return": 5.89
+        },
+        "511090": {
+          "score": 0.2087,
+          "r2": 0.87,
+          "annualized_return": 0.2399
+        },
+        "513130": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513690": {
+          "score": 1.301,
+          "r2": 0.8567,
+          "annualized_return": 1.5185
+        },
+        "510180": {
+          "score": 0,
+          "r2": 0.1425,
+          "annualized_return": -0.1022
+        },
+        "159915": {
+          "score": 0,
+          "r2": 0.1825,
+          "annualized_return": -0.1233
+        },
+        "510410": {
+          "score": 0.1732,
+          "r2": 0.2158,
+          "annualized_return": 0.8027
+        },
+        "515650": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512290": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "588120": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515070": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159851": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159637": {
+          "score": 0,
+          "r2": 0.328,
+          "annualized_return": -0.3367
+        },
+        "516160": {
+          "score": 0.002,
+          "r2": 0.0204,
+          "annualized_return": 0.0974
+        },
+        "159550": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512710": {
+          "score": 0,
+          "r2": 0.4196,
+          "annualized_return": -0.4817
+        },
+        "159692": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512480": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515250": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159378": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "516510": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515050": {
+          "score": 0,
+          "r2": 0.0563,
+          "annualized_return": -0.119
+        },
+        "159995": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515790": {
+          "score": 0.3946,
+          "r2": 0.4205,
+          "annualized_return": 0.9385
+        },
+        "515000": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        }
+      }
+    },
+    {
+      "date": "2026-02-25",
+      "time": "09:55:06",
+      "code": null,
+      "name": null,
+      "quantity": 0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": null,
+      "r2": null,
+      "annualized_return": null,
+      "pool_scores": {
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159509": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513520": {
+          "score": 2.2838,
+          "r2": 0.637,
+          "annualized_return": 3.5851
+        },
+        "513030": {
+          "score": 0,
+          "r2": -0.006,
+          "annualized_return": 0.1916
+        },
+        "518880": {
+          "score": 0.2094,
+          "r2": 0.2408,
+          "annualized_return": 0.8697
+        },
+        "159980": {
+          "score": 0,
+          "r2": 0.1577,
+          "annualized_return": -0.286
+        },
+        "159985": {
+          "score": 0.1276,
+          "r2": 0.5488,
+          "annualized_return": 0.2326
+        },
+        "159981": {
+          "score": 0.0002,
+          "r2": 0.0069,
+          "annualized_return": 0.0259
+        },
+        "501018": {
+          "score": 4.1051,
+          "r2": 0.5514,
+          "annualized_return": 7.4452
+        },
+        "511090": {
+          "score": 0.1932,
+          "r2": 0.8581,
+          "annualized_return": 0.2252
+        },
+        "513130": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513690": {
+          "score": 1.2869,
+          "r2": 0.8626,
+          "annualized_return": 1.4919
+        },
+        "510180": {
+          "score": 0,
+          "r2": 0.0623,
+          "annualized_return": -0.0578
+        },
+        "159915": {
+          "score": 0,
+          "r2": 0.1155,
+          "annualized_return": -0.0915
+        },
+        "510410": {
+          "score": 0.1843,
+          "r2": 0.2206,
+          "annualized_return": 0.8358
+        },
+        "515650": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512290": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "588120": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515070": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159851": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159637": {
+          "score": 0,
+          "r2": 0.2215,
+          "annualized_return": -0.2615
+        },
+        "516160": {
+          "score": 0.0048,
+          "r2": 0.0349,
+          "annualized_return": 0.137
+        },
+        "159550": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512710": {
+          "score": 0,
+          "r2": 0.3217,
+          "annualized_return": -0.3653
+        },
+        "159692": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512480": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515250": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159378": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "516510": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515050": {
+          "score": 0,
+          "r2": 0.0149,
+          "annualized_return": -0.0528
+        },
+        "159995": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515790": {
+          "score": 0.2915,
+          "r2": 0.3693,
+          "annualized_return": 0.7893
+        },
+        "515000": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        }
+      }
+    },
+    {
+      "date": "2026-02-26",
+      "time": "14:54:22",
+      "code": null,
+      "name": null,
+      "quantity": 0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": null,
+      "r2": null,
+      "annualized_return": null,
+      "pool_scores": {
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159509": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513520": {
+          "score": 2.7994,
+          "r2": 0.6883,
+          "annualized_return": 4.0671
+        },
+        "513030": {
+          "score": 0.0576,
+          "r2": 0.1311,
+          "annualized_return": 0.4393
+        },
+        "518880": {
+          "score": 0.159,
+          "r2": 0.2103,
+          "annualized_return": 0.756
+        },
+        "159980": {
+          "score": 0,
+          "r2": 0.1151,
+          "annualized_return": -0.2306
+        },
+        "159985": {
+          "score": 0.182,
+          "r2": 0.6307,
+          "annualized_return": 0.2886
+        },
+        "159981": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "501018": {
+          "score": 3.7846,
+          "r2": 0.5474,
+          "annualized_return": 6.9139
+        },
+        "511090": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513130": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513690": {
+          "score": 1.1036,
+          "r2": 0.8349,
+          "annualized_return": 1.3219
+        },
+        "510180": {
+          "score": 0,
+          "r2": 0.0074,
+          "annualized_return": -0.0107
+        },
+        "159915": {
+          "score": 0,
+          "r2": 0.0183,
+          "annualized_return": -0.0241
+        },
+        "510410": {
+          "score": 0.219,
+          "r2": 0.2357,
+          "annualized_return": 0.9289
+        },
+        "515650": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512290": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "588120": {
+          "score": 0,
+          "r2": 0.1106,
+          "annualized_return": -0.1843
+        },
+        "515070": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159851": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159637": {
+          "score": 0,
+          "r2": 0.1145,
+          "annualized_return": -0.1699
+        },
+        "516160": {
+          "score": 0.0114,
+          "r2": 0.0584,
+          "annualized_return": 0.1959
+        },
+        "159550": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512710": {
+          "score": 0,
+          "r2": 0.1132,
+          "annualized_return": -0.1987
+        },
+        "159692": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512480": {
+          "score": 0,
+          "r2": 0.1328,
+          "annualized_return": -0.2879
+        },
+        "515250": {
+          "score": 0,
+          "r2": 0.3794,
+          "annualized_return": -0.341
+        },
+        "159378": {
+          "score": 0,
+          "r2": 0.4539,
+          "annualized_return": -0.416
+        },
+        "516510": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515050": {
+          "score": 0,
+          "r2": -0.0015,
+          "annualized_return": 0.1222
+        },
+        "159995": {
+          "score": 0,
+          "r2": 0.1671,
+          "annualized_return": -0.323
+        },
+        "515790": {
+          "score": 0.2335,
+          "r2": 0.336,
+          "annualized_return": 0.6951
+        },
+        "515000": {
+          "score": 0,
+          "r2": 0.2284,
+          "annualized_return": -0.2445
+        }
+      }
+    },
+    {
+      "date": "2026-02-27",
+      "time": "10:47:25",
+      "code": null,
+      "name": null,
+      "quantity": 0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": null,
+      "r2": null,
+      "annualized_return": null,
+      "pool_scores": {
+        "518880": {
+          "score": 0.1222,
+          "r2": 0.1836,
           "annualized_return": 0.666
         },
-        "513030": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159985": {
-          "score": 0.0166,
-          "r2": 0.1697,
-          "annualized_return": 0.0976
-        },
-        "159981": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "511090": {
-          "score": 0.0216,
-          "r2": 0.2031,
-          "annualized_return": 0.1063
-        },
-        "513130": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "513690": {
-          "score": 0.6451,
-          "r2": 0.7275,
-          "annualized_return": 0.8867
-        },
-        "510180": {
+        "513100": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
         },
         "159915": {
-          "score": 0.0941,
-          "r2": 0.311,
-          "annualized_return": 0.3027
-        },
-        "515650": {
           "score": 0,
-          "r2": 0,
-          "annualized_return": 0
+          "r2": 0.0043,
+          "annualized_return": -0.0064
         },
-        "512290": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "588120": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "515070": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159851": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159637": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "516160": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159550": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "512710": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159692": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "512480": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "515250": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159378": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "516510": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "515050": {
-          "score": 0.1451,
-          "r2": 0.3948,
-          "annualized_return": 0.3677
-        },
-        "159995": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "515790": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "515000": {
+        "511090": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
@@ -1292,8 +786,8 @@
       }
     },
     {
-      "date": "2026-02-03",
-      "time": "16:04:24",
+      "date": "2026-03-02",
+      "time": "11:15:23",
       "code": null,
       "name": null,
       "quantity": 0,
@@ -1316,29 +810,44 @@
           "annualized_return": 0
         },
         "513520": {
-          "score": 0.2726,
-          "r2": 0.5434,
-          "annualized_return": 0.5016
+          "score": 4.0387,
+          "r2": 0.7852,
+          "annualized_return": 5.1434
         },
         "513030": {
+          "score": 0.4187,
+          "r2": 0.454,
+          "annualized_return": 0.9222
+        },
+        "518880": {
+          "score": 0.1393,
+          "r2": 0.1901,
+          "annualized_return": 0.7327
+        },
+        "159980": {
           "score": 0,
-          "r2": 0,
-          "annualized_return": 0
+          "r2": 0.004,
+          "annualized_return": -0.0235
         },
         "159985": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
+          "score": 0.2396,
+          "r2": 0.7203,
+          "annualized_return": 0.3326
         },
         "159981": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
+          "score": 0.0,
+          "r2": 0.0006,
+          "annualized_return": 0.0055
+        },
+        "501018": {
+          "score": 5.6615,
+          "r2": 0.5931,
+          "annualized_return": 9.5451
         },
         "511090": {
-          "score": 0.1037,
-          "r2": 0.5337,
-          "annualized_return": 0.1942
+          "score": 0.0645,
+          "r2": 0.5336,
+          "annualized_return": 0.1208
         },
         "513130": {
           "score": 0,
@@ -1346,19 +855,24 @@
           "annualized_return": 0
         },
         "513690": {
-          "score": 0.76,
-          "r2": 0.7373,
-          "annualized_return": 1.0308
+          "score": 1.0013,
+          "r2": 0.8232,
+          "annualized_return": 1.2165
         },
         "510180": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
+          "score": 0.0005,
+          "r2": 0.008,
+          "annualized_return": 0.0575
         },
         "159915": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
+        },
+        "510410": {
+          "score": 0.4105,
+          "r2": 0.3003,
+          "annualized_return": 1.3667
         },
         "515650": {
           "score": 0,
@@ -1391,9 +905,9 @@
           "annualized_return": 0
         },
         "516160": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
+          "score": 0.026,
+          "r2": 0.0968,
+          "annualized_return": 0.2689
         },
         "159550": {
           "score": 0,
@@ -1401,6 +915,172 @@
           "annualized_return": 0
         },
         "512710": {
+          "score": 0,
+          "r2": -0.0154,
+          "annualized_return": 0.1436
+        },
+        "159692": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512480": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515250": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159378": {
+          "score": 0,
+          "r2": 0.2029,
+          "annualized_return": -0.242
+        },
+        "516510": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515050": {
+          "score": 0.0294,
+          "r2": 0.0797,
+          "annualized_return": 0.3683
+        },
+        "159995": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515790": {
+          "score": 0.1808,
+          "r2": 0.2986,
+          "annualized_return": 0.6056
+        },
+        "515000": {
+          "score": 0,
+          "r2": 0.138,
+          "annualized_return": -0.1672
+        }
+      }
+    },
+    {
+      "date": "2026-03-04",
+      "time": "10:39:51",
+      "code": null,
+      "name": null,
+      "quantity": 0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": null,
+      "r2": null,
+      "annualized_return": null,
+      "pool_scores": {
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159509": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513030": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "518880": {
+          "score": 0.1042,
+          "r2": 0.1545,
+          "annualized_return": 0.6744
+        },
+        "159980": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159985": {
+          "score": 0.4088,
+          "r2": 0.702,
+          "annualized_return": 0.5823
+        },
+        "159981": {
+          "score": 0.064,
+          "r2": 0.1201,
+          "annualized_return": 0.5329
+        },
+        "501018": {
+          "score": 15.4143,
+          "r2": 0.6401,
+          "annualized_return": 24.0823
+        },
+        "511090": {
+          "score": 0.0373,
+          "r2": 0.4478,
+          "annualized_return": 0.0834
+        },
+        "513130": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513690": {
+          "score": 0.8056,
+          "r2": 0.7798,
+          "annualized_return": 1.0331
+        },
+        "510180": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "510410": {
+          "score": 0.79,
+          "r2": 0.3673,
+          "annualized_return": 2.1505
+        },
+        "515650": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512290": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515070": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159851": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159637": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "516160": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159550": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
@@ -1415,7 +1095,153 @@
           "r2": 0,
           "annualized_return": 0
         },
-        "159378": {
+        "516510": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515050": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515790": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515000": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        }
+      }
+    },
+    {
+      "date": "2026-03-05",
+      "time": "11:09:12",
+      "code": null,
+      "name": null,
+      "quantity": 0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": null,
+      "r2": null,
+      "annualized_return": null,
+      "pool_scores": {
+        "513100": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159509": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513030": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "518880": {
+          "score": 0.0612,
+          "r2": 0.1118,
+          "annualized_return": 0.5471
+        },
+        "159980": {
+          "score": 0,
+          "r2": 0.0059,
+          "annualized_return": -0.0245
+        },
+        "159985": {
+          "score": 0.5109,
+          "r2": 0.6762,
+          "annualized_return": 0.7555
+        },
+        "159981": {
+          "score": 0.2512,
+          "r2": 0.2189,
+          "annualized_return": 1.1477
+        },
+        "501018": {
+          "score": 18.2482,
+          "r2": 0.6591,
+          "annualized_return": 27.6853
+        },
+        "511090": {
+          "score": 0.0288,
+          "r2": 0.414,
+          "annualized_return": 0.0696
+        },
+        "513130": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "513690": {
+          "score": 0.6572,
+          "r2": 0.737,
+          "annualized_return": 0.8918
+        },
+        "510180": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159915": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "510410": {
+          "score": 0.8128,
+          "r2": 0.3725,
+          "annualized_return": 2.1819
+        },
+        "515650": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "512290": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515070": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159851": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159637": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "516160": {
+          "score": 0.0051,
+          "r2": 0.0357,
+          "annualized_return": 0.1421
+        },
+        "159550": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "159692": {
+          "score": 0,
+          "r2": 0,
+          "annualized_return": 0
+        },
+        "515250": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
@@ -1427,18 +1253,13 @@
         },
         "515050": {
           "score": 0.0584,
-          "r2": 0.247,
-          "annualized_return": 0.2365
-        },
-        "159995": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
+          "r2": 0.1446,
+          "annualized_return": 0.4037
         },
         "515790": {
-          "score": 1.9087,
-          "r2": 0.7059,
-          "annualized_return": 2.7037
+          "score": 0.043,
+          "r2": 0.1391,
+          "annualized_return": 0.3093
         },
         "515000": {
           "score": 0,
@@ -1448,8 +1269,8 @@
       }
     },
     {
-      "date": "2026-02-04",
-      "time": "10:07:57",
+      "date": "2026-03-12",
+      "time": "14:04:15",
       "code": null,
       "name": null,
       "quantity": 0,
@@ -1461,142 +1282,145 @@
       "r2": null,
       "annualized_return": null,
       "pool_scores": {
+        "518880": {
+          "score": 0.0173,
+          "r2": 0.0556,
+          "annualized_return": 0.3117
+        },
         "513100": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159509": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "513520": {
-          "score": 0.2466,
-          "r2": 0.5258,
-          "annualized_return": 0.469
-        },
-        "513030": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159985": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159981": {
-          "score": 0.0599,
-          "r2": 0.1895,
-          "annualized_return": 0.3162
-        },
-        "511090": {
-          "score": 0.1278,
-          "r2": 0.6278,
-          "annualized_return": 0.2036
-        },
-        "513130": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "513690": {
-          "score": 0.8804,
-          "r2": 0.7642,
-          "annualized_return": 1.152
-        },
-        "510180": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
         },
         "159915": {
           "score": 0,
-          "r2": 0,
-          "annualized_return": 0
+          "r2": 0.0634,
+          "annualized_return": -0.1156
         },
-        "515650": {
-          "score": 0,
-          "r2": 0.3989,
-          "annualized_return": -0.2669
-        },
-        "512290": {
+        "511090": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
-        },
-        "588120": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "515070": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159851": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "159637": {
+        }
+      }
+    },
+    {
+      "date": "2026-03-13",
+      "time": "17:34:27",
+      "code": null,
+      "name": null,
+      "quantity": 0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": null,
+      "r2": null,
+      "annualized_return": null,
+      "pool_scores": {
+        "518880": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
         },
-        "516160": {
+        "513100": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
         },
-        "159550": {
+        "159915": {
+          "score": 0,
+          "r2": 0.01,
+          "annualized_return": -0.0319
+        },
+        "511090": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
         },
-        "512710": {
+        "159201": {
+          "score": 1.2599,
+          "r2": 0.8501,
+          "annualized_return": 1.482
+        }
+      }
+    },
+    {
+      "date": "2026-03-16",
+      "time": "09:39:05",
+      "code": null,
+      "name": null,
+      "quantity": 0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": null,
+      "r2": null,
+      "annualized_return": null,
+      "pool_scores": {
+        "518880": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
         },
-        "159692": {
+        "513100": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
         },
-        "515250": {
+        "159915": {
+          "score": 0,
+          "r2": 0.0161,
+          "annualized_return": -0.0459
+        },
+        "511090": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
         },
-        "159378": {
+        "159201": {
+          "score": 1.2311,
+          "r2": 0.8436,
+          "annualized_return": 1.4594
+        }
+      }
+    },
+    {
+      "date": "2026-03-18",
+      "time": "10:39:16",
+      "code": null,
+      "name": null,
+      "quantity": 0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "unrealized_pnl": 0.0,
+      "pnl_ratio": 0.0,
+      "score": null,
+      "r2": null,
+      "annualized_return": null,
+      "pool_scores": {
+        "518880": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
         },
-        "516510": {
+        "513100": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
         },
-        "515050": {
+        "159915": {
+          "score": 0,
+          "r2": -0.0027,
+          "annualized_return": 0.0312
+        },
+        "511090": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
         },
-        "159995": {
-          "score": 0,
-          "r2": 0,
-          "annualized_return": 0
-        },
-        "515790": {
-          "score": 1.9466,
-          "r2": 0.7129,
-          "annualized_return": 2.7304
-        },
-        "515000": {
+        "159201": {
           "score": 0,
           "r2": 0,
           "annualized_return": 0
@@ -1604,5 +1428,5 @@
       }
     }
   ],
-  "last_update_date": "2026-02-02"
+  "last_update_date": "2026-02-06"
 }
